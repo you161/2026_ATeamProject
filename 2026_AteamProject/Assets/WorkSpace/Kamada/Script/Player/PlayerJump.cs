@@ -5,6 +5,7 @@ public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private PlayerData playerData = null;
+    [SerializeField] private PlayerMove playerMove = null;
 
     private bool isGrounded = true;
     private bool isJumping = false;
@@ -70,8 +71,9 @@ public class PlayerJump : MonoBehaviour
         if (isFrontJumping)
         {
             Vector3 pos = rb.position;
-            pos += playerData.frontJumpPower * Time.fixedDeltaTime * rb.transform.forward;
+            pos += Time.fixedDeltaTime * playerMove.CurrentVelocity;
             rb.position = pos;
+            //playerData.frontJumpPower
 
             currentTime += Time.fixedDeltaTime;
             if (currentTime >= playerData.frontJumpTime)

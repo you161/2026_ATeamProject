@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 currentVelocity = Vector3.zero;
     private bool isPressed = false;
+    public Vector3 CurrentVelocity { get => currentVelocity; }
 
     private void Start()
     {
@@ -56,9 +57,13 @@ public class PlayerMove : MonoBehaviour
     }
     private void Move()
     {
+        float currentRotationSpeed = playerData.rotationSpeed;
+        float currentAcceleration = playerData.acceleration;
+
         if (playerJump.IsFrontJumping)
         {
-            return;
+            currentRotationSpeed *= 0.5f;
+            currentAcceleration *= 0.5f;
         }
 
         if (isPressed)
@@ -68,7 +73,7 @@ public class PlayerMove : MonoBehaviour
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 targetDirection,
-                playerData.acceleration * Time.fixedDeltaTime
+                currentAcceleration * Time.fixedDeltaTime
             );
 
             // 移動方向とは別に、プレイヤーの向きを徐々に変更
@@ -78,7 +83,7 @@ public class PlayerMove : MonoBehaviour
                 rb.rotation = Quaternion.RotateTowards(
                     rb.rotation,
                     targetRotation,
-                    playerData.rotationSpeed * Time.fixedDeltaTime
+                    currentRotationSpeed * Time.fixedDeltaTime
                 );
             }
         }
