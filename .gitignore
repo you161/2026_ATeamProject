@@ -104,3 +104,22 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+2026_ATeamProject/.vsconfig
+2026_ATeamProject/Assembly-CSharp.csproj
+2026_ATeamProject/2026_ATeamProject.sln
+2026_ATeamProject/.vs/2026_ATeamProject/project-colors.json
+2026_ATeamProject/.vs/2026_ATeamProject/FileContentIndex/21a49f47-2ded-48a7-a9e2-4ac272791f4b.vsidx
+2026_ATeamProject/.vs/2026_ATeamProject/FileContentIndex/3cc17768-ab6e-4024-ab1f-c82331dacd29.vsidx
+2026_ATeamProject/.vs/2026_ATeamProject/FileContentIndex/8b6e8ab7-f393-4218-aab4-5c131ac8137e.vsidx
+2026_ATeamProject/.vs/2026_ATeamProject/FileContentIndex/a0396cc7-b37b-474e-a7eb-920b88d6ca16.vsidx
+2026_ATeamProject/.vs/2026_ATeamProject/FileContentIndex/read.lock
+2026_ATeamProject/.vs/2026_ATeamProject/v17/.suo
+2026_ATeamProject/Library/
+2026_ATeamProject/Logs/
+2026_ATeamProject/obj/
+2026_ATeamProject/UserSettings/
+*.sln
+*.suo
+2026_ATeamProject/Temp/
+2026_ATeamProject/.vs/
