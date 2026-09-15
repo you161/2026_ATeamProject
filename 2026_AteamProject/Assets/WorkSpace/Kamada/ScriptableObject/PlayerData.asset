@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ed12671b4d9254b90425a779a5e56a, type: 3}
+  m_Script: {fileID: 11500000, guid: a08bcc9b6064c394287146c53faface6, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   maxMoveSpeed: 5
@@ -17,6 +17,7 @@ MonoBehaviour:
   deceleration: 10
   jumpPower: 10
   gravityPower: 25
-  frontJumpPower: 10
+  frontJumpPower: 3
+  frontJumpUpPower: 2
   frontJumpTime: 1
   rotationSpeed: 720
