@@ -1,7 +1,4 @@
-using Unity.Collections.Tests.CoreCLR.TestJobs;
-using UnityEditor.Presets;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -18,7 +15,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private Vector3 StartPosition;
     private Material BaseMaterial;
-    private float Timer = 0.0f;
+    private float countTime = 0.0f;
     private bool isFalling = false;
     private bool isReset = false;
 
@@ -30,11 +27,39 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Update()
     {
-        if (isFalling && !isReset)
+        if (isFalling)
         {
-            Timer += Time.deltaTime;
+            FallingFloor();
+        }
+        ResetFloor();
 
-            if (Timer > FallingTime)
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && !isFalling)
+        {
+            isFalling = true;
+            transform.GetChild(0).gameObject.transform.localScale = new Vector3(Resize, Resize, Resize);
+            myRenderer.material = changeMaterial;
+        }
+        if (collision.gameObject.CompareTag("Bomb"))
+        {
+            Color color = myRenderer.material.color;
+            color.a = 0.0f;
+            myRenderer.material.color = color;
+            transform.position = new Vector3(transform.position.x, -10.0f, transform.position.z);
+            isReset = true;
+        }
+    }
+
+    private void FallingFloor()
+    {
+        if (!isReset)
+        {
+            countTime += Time.deltaTime;
+
+            if (countTime > FallingTime)
             {
                 Vector3 currentPosition = transform.position;
                 currentPosition.y += FallingSpeed * Time.deltaTime;
@@ -44,53 +69,43 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 color.a = Mathf.Max(0.0f, color.a);
                 myRenderer.material.color = color;
 
-                if (myRenderer.material.color.a == 0.0f)
+                if (currentPosition.y < -10.0f)
                 {
                     isReset = true;
-                    Timer = 0.0f;
+                    countTime = 0.0f;
                 }
             }
         }
-        else if (isReset && isLoop)
-        {
-            Timer += Time.deltaTime;
+        
+    }
 
-            if (myRenderer.material == BaseMaterial)
+    private void ResetFloor()
+    {
+        if (isReset && isLoop)
+        {
+            countTime += Time.deltaTime;
+
+            if (transform.position == StartPosition)
             {
                 Color color = myRenderer.material.color;
-                color.a = Timer % 0.2f < 0.1 ? 0.0f : 1.0f;
-                myRenderer.material.color = color;
+                color.a = countTime % 0.2f < 0.1 ? 0.0f : 1.0f;
 
-                if (Timer > FlashTime)
+                if (countTime > FlashTime)
                 {
-                    myRenderer.material = BaseMaterial;
+                    color.a = 1.0f;
                     isFalling = false;
                     isReset = false;
-                    Timer = 0.0f;
+                    countTime = 0.0f;
                 }
+
+                myRenderer.material.color = color;
             }
-            else if (Timer > ResetTime)
+            else if (countTime > ResetTime)
             {
                 transform.position = StartPosition;
                 myRenderer.material = BaseMaterial;
-                Timer = 0.0f;
+                countTime = 0.0f;
             }
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!isFalling)
-        {
-            isFalling = true;
-            transform.localScale = new Vector3(Resize, Resize, Resize);
-            myRenderer.material = changeMaterial;
-        }
-    }
-
-    private void OnPlayer()
-    {
-        
-       
     }
 }
