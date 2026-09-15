@@ -5,9 +5,7 @@ public class GamePadPlayerManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] private Transform[] spawnPoints = null;
-
     [SerializeField] private int maxPlayerCount = 2;
-
     private void Start()
     {
         CreatePlayers();
