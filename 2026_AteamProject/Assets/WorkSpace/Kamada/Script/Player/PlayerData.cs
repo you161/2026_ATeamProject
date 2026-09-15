@@ -13,9 +13,11 @@ public class PlayerData : ScriptableObject
     public float jumpPower = 0;
     [Header("重力")]
     public float gravityPower = 0;
-    [Header("前ジャンプ力")]
+    [Header("前方向へのジャンプ力")]
     public float frontJumpPower = 0;
-    [Header("前ジャンプ時間")]
+    [Header("前方向へのジャンプ上昇力")]
+    public float frontJumpUpPower = 0;
+    [Header("前方向のジャンプ時間")]
     public float frontJumpTime = 0;
     [Header("回転速度")]
     public float rotationSpeed = 0;
