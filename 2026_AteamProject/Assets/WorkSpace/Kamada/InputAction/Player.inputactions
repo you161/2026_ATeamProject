@@ -17,16 +17,6 @@
                     "priority": 0
                 },
                 {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "d60752ab-a4ab-44fc-b090-8969e92274e2",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true,
-                    "priority": 0
-                },
-                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "de31e1d0-44cd-4b79-86f1-f5057adad0b1",
@@ -61,17 +51,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -87,7 +66,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Push",
                     "isComposite": false,
                     "isPartOfComposite": false
