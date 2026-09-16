@@ -71,6 +71,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
                 if (currentPosition.y < -10.0f)
                 {
+                    transform.GetChild(0).gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     isReset = true;
                     countTime = 0.0f;
                 }
