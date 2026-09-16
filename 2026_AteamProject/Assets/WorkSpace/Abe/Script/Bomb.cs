@@ -43,6 +43,7 @@ public class Bomb : MonoBehaviour
 
     private GameObject currentBomb = null;
     private BombCollider currentBombScript = null;
+    private GameObject currentBombCapsule = null;
 
     //投げ始めた位置
     private Vector3 throwStartPosition;
@@ -114,6 +115,8 @@ public class Bomb : MonoBehaviour
             bombObject.transform.rotation
         );
         currentBombScript = currentBomb.GetComponent<BombCollider>();
+        currentBombCapsule = currentBomb.transform.GetChild(1).gameObject;
+        currentBombCapsule.SetActive( false );
     }
 
     private void StartThrow()
@@ -180,8 +183,7 @@ public class Bomb : MonoBehaviour
         }
 
         // ステージ外　不発
-        //float distance = Vector3.Distance(currentBomb.transform.position, omenObject.transform.position);
-        if (currentBomb.transform.position.y <= maxGround)  // distance < 0.1f
+        if (currentBomb.transform.position.y <= maxGround)
         {
             isThrow = false;
             isReady = false;
@@ -202,6 +204,7 @@ public class Bomb : MonoBehaviour
             lineRenderer.positionCount = 0;
             currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
             omenObject.SetActive(false);
+            currentBombCapsule.SetActive(true);
         }
     }
 

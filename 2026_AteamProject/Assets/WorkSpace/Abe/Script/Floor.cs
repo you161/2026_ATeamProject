@@ -35,24 +35,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && !isFalling)
-        {
-            isFalling = true;
-            transform.GetChild(0).gameObject.transform.localScale = new Vector3(Resize, Resize, Resize);
-            myRenderer.material = changeMaterial;
-        }
-        if (collision.gameObject.CompareTag("Bomb"))
-        {
-            Color color = myRenderer.material.color;
-            color.a = 0.0f;
-            myRenderer.material.color = color;
-            transform.position = new Vector3(transform.position.x, -10.0f, transform.position.z);
-            isReset = true;
-        }
-    }
-
     private void FallingFloor()
     {
         if (!isReset)
@@ -77,7 +59,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     private void ResetFloor()
@@ -107,6 +89,30 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 myRenderer.material = BaseMaterial;
                 countTime = 0.0f;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isReset)
+        {
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("Player") && !isFalling)
+        {
+            isFalling = true;
+            transform.GetChild(0).gameObject.transform.localScale = new Vector3(Resize, Resize, Resize);
+            myRenderer.material = changeMaterial;
+        }
+        if (collision.gameObject.CompareTag("Bomb"))
+        {
+            Color color = myRenderer.material.color;
+            color.a = 0.0f;
+            myRenderer.material.color = color;
+            transform.position = new Vector3(transform.position.x, -10.0f, transform.position.z);
+            countTime = 0.0f;
+            isReset = true;
         }
     }
 }

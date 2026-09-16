@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5738836852259097922}
+  - {fileID: 5264569318523687059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5229258585176172705
@@ -96,6 +97,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9c84ed3d4354b4b9317ff9eb816b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BombCollider
+--- !u!1 &6715218368730575786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5264569318523687059}
+  - component: {fileID: 5858890792960943487}
+  m_Layer: 0
+  m_Name: BombTrigger
+  m_TagString: Bomb
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5264569318523687059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6715218368730575786}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2421500282583074260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5858890792960943487
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6715218368730575786}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.275
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1001 &2718006162646585260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,6 +170,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7000213742000615277, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
       propertyPath: m_Name
+      value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000213742000615277, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
+      propertyPath: m_TagString
       value: Bomb
       objectReference: {fileID: 0}
     - target: {fileID: 7646053897786376942, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
