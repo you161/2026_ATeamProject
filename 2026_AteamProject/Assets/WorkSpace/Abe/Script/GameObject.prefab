@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2421500282583074260}
   - component: {fileID: 5229258585176172705}
   - component: {fileID: 5681103479615670376}
+  - component: {fileID: 8322316133287269960}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Bomb
@@ -83,6 +84,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4711208715938537054, guid: 0048f4b421782464594adcdcea7a8dff, type: 3}
+--- !u!114 &8322316133287269960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846605168037731138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9c84ed3d4354b4b9317ff9eb816b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BombCollider
 --- !u!1001 &2718006162646585260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,6 +104,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2421500282583074260}
     m_Modifications:
+    - target: {fileID: 1461623361815340976, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429814459179840715, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7000213742000615277, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
       propertyPath: m_Name
       value: Bomb
@@ -133,6 +154,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7646053897786376942, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725347170068219725, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934426738796785939, guid: e4c088202aa9ed34b8901d6de4dcffae, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1143,8 +1143,9 @@ MonoBehaviour:
   maxPredictionTime: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   omenObject: {fileID: 1264348590}
+  playerControllerInput: {fileID: 0}
 --- !u!120 &803103318
 LineRenderer:
   serializedVersion: 3

@@ -14,12 +14,13 @@ GameObject:
   - component: {fileID: 6143234520199603855}
   - component: {fileID: 8293003944076802204}
   - component: {fileID: 6670962099037249596}
+  - component: {fileID: 555161603370548197}
   - component: {fileID: 9063516002051265938}
   - component: {fileID: 6553057108609870135}
   - component: {fileID: 4819171960350234518}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +117,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShadowTracking
   rb: {fileID: 9063516002051265938}
   shadowObject: {fileID: 0}
+--- !u!114 &555161603370548197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497822657333633818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df899ced1c8002344bd41541a7eadd6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bomb
+  throwDistance: 10
+  gravityPower: 5
+  throwUpPower: 5
+  maxGround: -10
+  explosionTime: 5
+  explosionSize: 2
+  tTime: 0.01
+  bombObject: {fileID: 2846605168037731138, guid: 5738ac3db14f31c40a20c59635b52006, type: 3}
+  lineRenderer: {fileID: 0}
+  timeStep: 0.05
+  maxPredictionTime: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  omenObject: {fileID: 0}
+  playerControllerInput: {fileID: 6143234520199603855}
 --- !u!54 &9063516002051265938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,7 +221,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

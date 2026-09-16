@@ -17,6 +17,7 @@ public class Bomb : MonoBehaviour
 
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
+    [SerializeField] private MeshCollider bombCollider = null;
 
     [Header("軌道")]
     [SerializeField] private LineRenderer lineRenderer = null;
@@ -41,6 +42,7 @@ public class Bomb : MonoBehaviour
     private float countTime = 0.0f;
 
     private GameObject currentBomb = null;
+    private BombCollider currentBombScript = null;
 
     //投げ始めた位置
     private Vector3 throwStartPosition;
@@ -98,6 +100,7 @@ public class Bomb : MonoBehaviour
                 // 爆風の生成
 
                 Destroy(currentBomb.gameObject);
+                currentBomb = null;
                 isExplosion = false;
             }
         }
@@ -110,7 +113,7 @@ public class Bomb : MonoBehaviour
             transform.position + Vector3.up * 2.0f,
             bombObject.transform.rotation
         );
-        omenObject.transform.GetChild(0).gameObject.SetActive(true);
+        currentBombScript = currentBomb.GetComponent<BombCollider>();
     }
 
     private void StartThrow()
@@ -164,15 +167,26 @@ public class Bomb : MonoBehaviour
 
         //爆弾を移動
         currentBomb.transform.position = position;
-        float distance = Vector3.Distance(currentBomb.transform.position, omenObject.transform.position);
-        if (distance < 0.1f || currentBomb.transform.position.y <= maxGround)
+
+        // 爆発
+        if (currentBombScript != null && currentBombScript.IsFlag)
         {
             isThrow = false;
             isReady = false;
             isExplosion = true;
             countTime = 0.0f;
             currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
-            omenObject.transform.GetChild(0).gameObject.SetActive(false); // omenObject.SetActive(false);
+            omenObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        // ステージ外　不発
+        //float distance = Vector3.Distance(currentBomb.transform.position, omenObject.transform.position);
+        if (currentBomb.transform.position.y <= maxGround)  // distance < 0.1f
+        {
+            isThrow = false;
+            isReady = false;
+            Destroy(currentBomb.gameObject);
+            currentBomb = null;
         }
     }
 
@@ -247,23 +261,15 @@ public class Bomb : MonoBehaviour
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
 
                 omenObject.transform.position = hit.point;
+                omenObject.transform.position += Vector3.up * 0.3f;
+                omenObject.transform.GetChild(0).gameObject.SetActive(true);
                 omenObject.SetActive(true);
 
                 break;
             }
-            //else if (nextPosition.y < 0.0f)
-            //{
-            //    nextPosition.y = 0.0f;
-            //    lineRenderer.positionCount++;
-            //    lineRenderer.SetPosition(lineRenderer.positionCount - 1, nextPosition);
-
-            //    omenObject.transform.position = nextPosition;
-            //    omenObject.SetActive(true);
-
-            //    break;
-            //}
 
             //ポイント追加
+            if(omenObject.activeSelf) omenObject.SetActive(false);
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, nextPosition);
             previousPosition = nextPosition;
