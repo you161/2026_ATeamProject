@@ -361,8 +361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StockFader
   duration: 0.75
   crown: {fileID: 6900523250303921310}
-  SEAudio: {fileID: 8300000, guid: 8ce5a4a0c85a83147acf6a9de7309045, type: 3}
-  audioSource: {fileID: 0}
 --- !u!1 &1344283527928022470
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,8 +549,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StockFader
   duration: 0.75
   crown: {fileID: 5623644821109129819}
-  SEAudio: {fileID: 8300000, guid: 8ce5a4a0c85a83147acf6a9de7309045, type: 3}
-  audioSource: {fileID: 0}
+--- !u!1 &1370648223009681801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5060827718252265851}
+  - component: {fileID: 3526443929146360575}
+  - component: {fileID: 5685002813621769230}
+  m_Layer: 5
+  m_Name: 2P_WinenrBanar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5060827718252265851
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370648223009681801}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3759048767691545111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3526443929146360575
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370648223009681801}
+  m_CullTransparentMesh: 1
+--- !u!114 &5685002813621769230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370648223009681801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 30ad4ae498fcf63428e52e3928d41d8d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1957401997415413405
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,8 +812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StockFader
   duration: 0.75
   crown: {fileID: 6381606092757101343}
-  SEAudio: {fileID: 8300000, guid: 8ce5a4a0c85a83147acf6a9de7309045, type: 3}
-  audioSource: {fileID: 0}
 --- !u!1 &2422163412320268994
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +857,8 @@ RectTransform:
   - {fileID: 4624662470730824800}
   - {fileID: 3862793936729980493}
   - {fileID: 5613138069592621778}
+  - {fileID: 2631655597717906382}
+  - {fileID: 5060827718252265851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -859,6 +930,81 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &2963205251229690991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2631655597717906382}
+  - component: {fileID: 7183824355104798589}
+  - component: {fileID: 8537012219204151539}
+  m_Layer: 5
+  m_Name: 1P_WinenrBanar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2631655597717906382
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963205251229690991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3759048767691545111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7183824355104798589
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963205251229690991}
+  m_CullTransparentMesh: 1
+--- !u!114 &8537012219204151539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963205251229690991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d47911e1a86e588468bf3cf1a7b18355, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3361739661903528383
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,8 +1095,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StockFader
   duration: 0.75
   crown: {fileID: 4508210854396468950}
-  SEAudio: {fileID: 8300000, guid: 8ce5a4a0c85a83147acf6a9de7309045, type: 3}
-  audioSource: {fileID: 0}
 --- !u!1 &4992975385524412480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,8 +1185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StockFader
   duration: 0.75
   crown: {fileID: 5734402653952905722}
-  SEAudio: {fileID: 8300000, guid: 8ce5a4a0c85a83147acf6a9de7309045, type: 3}
-  audioSource: {fileID: 0}
 --- !u!1 &5863252959647467951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,5 +1546,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StockFader
   duration: 0.75
   crown: {fileID: 8282596191675728617}
-  SEAudio: {fileID: 8300000, guid: 8ce5a4a0c85a83147acf6a9de7309045, type: 3}
-  audioSource: {fileID: 0}
