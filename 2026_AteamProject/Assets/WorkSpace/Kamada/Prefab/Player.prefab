@@ -77,6 +77,7 @@ MonoBehaviour:
   playerControllerInput: {fileID: 6143234520199603855}
   playerShadowTracking: {fileID: 6670962099037249596}
   bomb: {fileID: 555161603370548197}
+  playerMove: {fileID: 5540215876860959113}
 --- !u!114 &6143234520199603855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShadowTracking
   rb: {fileID: 9063516002051265938}
   shadowObject: {fileID: 0}
-  shadowOffset: 0.35
+  shadowOffset: 0.3
 --- !u!114 &555161603370548197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
     m_Bits: 64
   omenObject: {fileID: 0}
   playerControllerInput: {fileID: 6143234520199603855}
+  playerJump: {fileID: 4875498827150167820}
 --- !u!54 &9063516002051265938
 Rigidbody:
   m_ObjectHideFlags: 0
