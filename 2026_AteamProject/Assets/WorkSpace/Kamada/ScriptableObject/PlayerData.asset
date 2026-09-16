@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08bcc9b6064c394287146c53faface6, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxMoveSpeed: 5
-  acceleration: 10
-  deceleration: 10
-  jumpPower: 10
-  gravityPower: 25
-  frontJumpPower: 3
-  frontJumpUpPower: 2
-  frontJumpTime: 1
-  rotationSpeed: 720
+  MaxMoveSpeed: 3
+  Acceleration: 10
+  Deceleration: 10
+  JumpPower: 10
+  GravityPower: 25
+  FrontJumpPower: 3
+  FrontJumpUpPower: 2
+  FrontJumpTime: 1
+  RotationSpeed: 720
+  KnockbackDistance: 5
+  KnockbackPower: 50
+  KnockbackTime: 1
