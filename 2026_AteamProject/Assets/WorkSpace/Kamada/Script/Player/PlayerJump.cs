@@ -28,15 +28,11 @@ public class PlayerJump : MonoBehaviour
         isGrounded = true;
         isJumping = false;
         isFrontJumping = false;
+        rb.useGravity = true;
     }
 
     private void Update()
     {
-        if(playerShadowTracking.IsFalling)
-        {
-            return;
-        }
-
         if (playerControllerInput.SouthButtonPressed)
         {
             OnJump();
@@ -60,6 +56,7 @@ public class PlayerJump : MonoBehaviour
 
             isGrounded = false;
             isJumping = true;
+            rb.useGravity = false;
 
             currentJumpPower = playerData.JumpPower;
 
@@ -131,11 +128,6 @@ public class PlayerJump : MonoBehaviour
         {
             isFrontJumping = false;
             currentTime = 0f;
-
-            //前傾を解除
-            Vector3 playerAngle = player.localEulerAngles;
-            playerAngle.x = 0f;
-            player.localEulerAngles = playerAngle;
         }
     }
 
@@ -149,6 +141,10 @@ public class PlayerJump : MonoBehaviour
         isGrounded = true;
         isJumping = false;
         isFrontJumping = false;
+
+        rb.useGravity = true;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         currentJumpPower = 0f;
         currentFrontJumpPower = 0f;

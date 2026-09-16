@@ -19,7 +19,6 @@ public class PlayerMove : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         moveDirection = Vector3.zero;
         isPressed = false;
-        rb.useGravity = false;
     }
 
     private void Update()
