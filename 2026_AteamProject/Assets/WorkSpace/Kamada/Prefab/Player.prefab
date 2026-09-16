@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6670962099037249596}
   - component: {fileID: 555161603370548197}
   - component: {fileID: 9063516002051265938}
-  - component: {fileID: 6553057108609870135}
+  - component: {fileID: 7831840702288854901}
   - component: {fileID: 4819171960350234518}
   m_Layer: 0
   m_Name: Player
@@ -76,6 +76,7 @@ MonoBehaviour:
   player: {fileID: 6798389414233393437}
   playerControllerInput: {fileID: 6143234520199603855}
   playerShadowTracking: {fileID: 6670962099037249596}
+  bomb: {fileID: 555161603370548197}
 --- !u!114 &6143234520199603855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShadowTracking
   rb: {fileID: 9063516002051265938}
   shadowObject: {fileID: 0}
+  shadowOffset: 0.35
 --- !u!114 &555161603370548197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +139,7 @@ MonoBehaviour:
   explosionSize: 2
   tTime: 0.01
   bombObject: {fileID: 2846605168037731138, guid: 5738ac3db14f31c40a20c59635b52006, type: 3}
+  bombCollider: {fileID: 5681103479615670376, guid: 5738ac3db14f31c40a20c59635b52006, type: 3}
   lineRenderer: {fileID: 0}
   timeStep: 0.05
   maxPredictionTime: 5
@@ -171,8 +174,8 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!136 &6553057108609870135
+  m_CollisionDetection: 2
+--- !u!136 &7831840702288854901
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

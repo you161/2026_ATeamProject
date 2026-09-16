@@ -549,10 +549,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6711265236519572014}
     - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: bombCollider
-      value: 
-      objectReference: {fileID: 5681103479615670376, guid: 5738ac3db14f31c40a20c59635b52006, type: 3}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 4951144133282772384}
@@ -608,14 +604,6 @@ PrefabInstance:
       propertyPath: shadowObject
       value: 
       objectReference: {fileID: 872013768889097959}
-    - target: {fileID: 9063516002051265938, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9166482416665570667, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
