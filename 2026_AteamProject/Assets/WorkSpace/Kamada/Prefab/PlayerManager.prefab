@@ -191,7 +191,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bed8f53c3868078408d8e4b3548dedc1, type: 2}
+  - {fileID: 2100000, guid: 4afe252e3947c8f4e82fda28329283ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -435,7 +435,7 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7903329333161629874}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -544,6 +544,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2011204257087415709}
     m_Modifications:
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: omenObject
+      value: 
+      objectReference: {fileID: 6711265236519572014}
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: bombCollider
+      value: 
+      objectReference: {fileID: 5681103479615670376, guid: 5738ac3db14f31c40a20c59635b52006, type: 3}
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: lineRenderer
+      value: 
+      objectReference: {fileID: 4951144133282772384}
     - target: {fileID: 1497822657333633818, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: m_Name
       value: Player
@@ -588,10 +600,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4819171960350234518, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Gamepad
-      objectReference: {fileID: 0}
     - target: {fileID: 5540215876860959113, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: shadowObject
       value: 
@@ -600,60 +608,21 @@ PrefabInstance:
       propertyPath: shadowObject
       value: 
       objectReference: {fileID: 872013768889097959}
+    - target: {fileID: 9063516002051265938, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166482416665570667, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1497822657333633818, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 757103909124194399}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
---- !u!114 &2544142252365430560 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6143234520199603855, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-  m_PrefabInstance: {fileID: 8507225862899734959}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117632568593267381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061e33e4b2004514c9975891ff8433b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerInput
 --- !u!4 &6732974157522034096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3134479551835128863, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
   m_PrefabInstance: {fileID: 8507225862899734959}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7117632568593267381 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1497822657333633818, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-  m_PrefabInstance: {fileID: 8507225862899734959}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &757103909124194399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117632568593267381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df899ced1c8002344bd41541a7eadd6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bomb
-  throwDistance: 10
-  gravityPower: 5
-  throwUpPower: 5
-  maxGround: -10
-  explosionTime: 5
-  explosionSize: 2
-  tTime: 0.01
-  bombObject: {fileID: 2846605168037731138, guid: 5738ac3db14f31c40a20c59635b52006, type: 3}
-  lineRenderer: {fileID: 4951144133282772384}
-  timeStep: 0.05
-  maxPredictionTime: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  omenObject: {fileID: 6711265236519572014}
-  playerControllerInput: {fileID: 2544142252365430560}
