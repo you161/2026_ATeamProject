@@ -17,7 +17,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "Fire",
+                    "name": "pushEastButton",
                     "type": "Button",
                     "id": "de31e1d0-44cd-4b79-86f1-f5057adad0b1",
                     "expectedControlType": "",
@@ -27,7 +27,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "Push",
+                    "name": "PushSouthButton",
                     "type": "Button",
                     "id": "b4dfd727-fdaa-490a-8f13-d16968fd6a07",
                     "expectedControlType": "",
@@ -56,7 +56,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "pushEastButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -67,7 +67,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Push",
+                    "action": "PushSouthButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
