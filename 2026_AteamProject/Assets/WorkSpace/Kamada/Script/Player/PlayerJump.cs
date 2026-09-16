@@ -8,6 +8,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private Transform player = null;
     [SerializeField] private PlayerControllerInput playerControllerInput = null;
     [SerializeField] private PlayerShadowTracking playerShadowTracking = null;
+    [SerializeField] private Bomb bomb = null;
 
     private bool isGrounded = true;
     private bool isJumping = false;
@@ -63,7 +64,7 @@ public class PlayerJump : MonoBehaviour
             return;
         }
 
-        if (!isFrontJumping)
+        if (!isFrontJumping && !bomb.IsReady)
         {
             StartFrontJump();
         }
