@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5540215876860959113}
   - component: {fileID: 4875498827150167820}
   - component: {fileID: 6143234520199603855}
+  - component: {fileID: 8293003944076802204}
+  - component: {fileID: 6670962099037249596}
   - component: {fileID: 9063516002051265938}
   - component: {fileID: 6553057108609870135}
   - component: {fileID: 4819171960350234518}
@@ -55,6 +57,7 @@ MonoBehaviour:
   playerJump: {fileID: 4875498827150167820}
   playerControllerInput: {fileID: 6143234520199603855}
   shadowObject: {fileID: 0}
+  playerKnockback: {fileID: 8293003944076802204}
 --- !u!114 &4875498827150167820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +74,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 9e75451dd55cdcc4496d830a4626721d, type: 2}
   player: {fileID: 6798389414233393437}
   playerControllerInput: {fileID: 6143234520199603855}
+  playerShadowTracking: {fileID: 6670962099037249596}
 --- !u!114 &6143234520199603855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +88,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerInput
   playerInput: {fileID: 4819171960350234518}
+--- !u!114 &8293003944076802204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497822657333633818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6df7f0d4f536b4bae51a2bccd23ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerKnockback
+  playerRigidbody: {fileID: 9063516002051265938}
+  playerData: {fileID: 11400000, guid: 9e75451dd55cdcc4496d830a4626721d, type: 2}
+--- !u!114 &6670962099037249596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497822657333633818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1ddf3a3c59ec74798ae27e30ca6db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShadowTracking
+  rb: {fileID: 9063516002051265938}
+  shadowObject: {fileID: 0}
 --- !u!54 &9063516002051265938
 Rigidbody:
   m_ObjectHideFlags: 0
