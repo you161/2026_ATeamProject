@@ -3,9 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerInput : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput;
-    private InputAction moveAction;
-    private InputAction pushAction;
+    [SerializeField] private PlayerInput playerInput = null;
+    private InputAction moveAction = null;
+    private InputAction southButtonAction = null;
+    private InputAction eastButtonAction = null;
 
     public Vector2 MoveInput
     {
@@ -14,17 +15,25 @@ public class PlayerControllerInput : MonoBehaviour
             return moveAction.ReadValue<Vector2>();
         }
     }
-    public bool PushPressed
+    public bool SouthButtonPressed
     {
         get
         {
-            return pushAction.WasPressedThisFrame();
+            return southButtonAction.WasPressedThisFrame();
+        }
+    }
+    public bool EastButtonPressed
+    {
+        get
+        {
+            return eastButtonAction.WasPressedThisFrame();
         }
     }
 
     private void Awake()
     {
         moveAction = playerInput.actions["Move"];
-        pushAction = playerInput.actions["Push"];
+        southButtonAction = playerInput.actions["PushSouthButton"];
+        eastButtonAction = playerInput.actions["PushEastButton"];
     }
 }

@@ -7,6 +7,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private PlayerData playerData = null;
     [SerializeField] private Transform player = null;
     [SerializeField] private PlayerControllerInput playerControllerInput = null;
+    [SerializeField] private PlayerShadowTracking playerShadowTracking = null;
 
     private bool isGrounded = true;
     private bool isJumping = false;
@@ -27,13 +28,16 @@ public class PlayerJump : MonoBehaviour
         isGrounded = true;
         isJumping = false;
         isFrontJumping = false;
-
-        rb.useGravity = false;
     }
 
     private void Update()
     {
-        if (playerControllerInput.PushPressed)
+        if(playerShadowTracking.IsFalling)
+        {
+            return;
+        }
+
+        if (playerControllerInput.SouthButtonPressed)
         {
             OnJump();
         }
@@ -57,7 +61,7 @@ public class PlayerJump : MonoBehaviour
             isGrounded = false;
             isJumping = true;
 
-            currentJumpPower = playerData.jumpPower;
+            currentJumpPower = playerData.JumpPower;
 
             return;
         }
@@ -74,7 +78,7 @@ public class PlayerJump : MonoBehaviour
         currentTime = 0f;
 
         //前ジャンプ開始時の上方向速度
-        currentFrontJumpPower = playerData.frontJumpUpPower;
+        currentFrontJumpPower = playerData.FrontJumpUpPower;
 
         //キャラクターを前傾
         Vector3 playerAngle = player.localEulerAngles;
@@ -96,7 +100,7 @@ public class PlayerJump : MonoBehaviour
         rb.position = pos;
 
         //重力
-        currentJumpPower -= playerData.gravityPower * Time.fixedDeltaTime;
+        currentJumpPower -= playerData.GravityPower * Time.fixedDeltaTime;
     }
 
     private void FrontJumping()
@@ -114,16 +118,16 @@ public class PlayerJump : MonoBehaviour
 
         Vector3 pos = rb.position;
 
-        pos += playerData.frontJumpPower * Time.fixedDeltaTime * forward;
+        pos += playerData.FrontJumpPower * Time.fixedDeltaTime * forward;
         pos += currentFrontJumpPower * Time.fixedDeltaTime * Vector3.up;
 
         rb.position = pos;
 
-        currentFrontJumpPower -= playerData.gravityPower * Time.fixedDeltaTime;
+        currentFrontJumpPower -= playerData.GravityPower * Time.fixedDeltaTime;
 
         currentTime += Time.fixedDeltaTime;
 
-        if (currentTime >= playerData.frontJumpTime)
+        if (currentTime >= playerData.FrontJumpTime)
         {
             isFrontJumping = false;
             currentTime = 0f;

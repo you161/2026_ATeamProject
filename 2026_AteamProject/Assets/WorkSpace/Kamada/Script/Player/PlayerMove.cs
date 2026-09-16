@@ -7,33 +7,29 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private PlayerJump playerJump = null;
     [SerializeField] private PlayerControllerInput playerControllerInput = null;
     [SerializeField] private GameObject shadowObject = null;
+    [SerializeField] private PlayerKnockback playerKnockback = null;
 
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 currentVelocity = Vector3.zero;
     private bool isPressed = false;
 
-    public Vector3 CurrentVelocity
-    {
-        get => currentVelocity;
-    }
-
     private void Start()
     {
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-
         moveDirection = Vector3.zero;
+        isPressed = false;
+        rb.useGravity = false;
     }
 
     private void Update()
     {
-        MoveInput();
-
-        //影の位置を更新
-        if (Physics.Raycast(rb.position, Vector3.down, out RaycastHit hit))
+        if (playerKnockback.IsKnockback)
         {
-            shadowObject.transform.position = hit.point;
+            return;
         }
+
+        MoveInput();
     }
 
     private void FixedUpdate()
@@ -61,7 +57,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        float currentAcceleration = playerData.acceleration;
+        float currentAcceleration = playerData.Acceleration;
 
         //前ジャンプ中は加速度を1/10にする
         if (playerJump.IsFrontJumping)
@@ -72,7 +68,7 @@ public class PlayerMove : MonoBehaviour
         if (isPressed)
         {
             //移動方向に応じた目標速度を計算
-            Vector3 targetVelocity = moveDirection * playerData.maxMoveSpeed;
+            Vector3 targetVelocity = moveDirection * playerData.MaxMoveSpeed;
 
             //現在の速度を目標速度に向かって加速
             currentVelocity = Vector3.MoveTowards(
@@ -87,7 +83,7 @@ public class PlayerMove : MonoBehaviour
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 Vector3.zero,
-                playerData.deceleration * Time.fixedDeltaTime
+                playerData.Deceleration * Time.fixedDeltaTime
             );
         }
 
@@ -101,7 +97,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Rotate()
     {
-        float rotationSpeed = playerData.rotationSpeed;
+        float rotationSpeed = playerData.RotationSpeed;
 
         //前ジャンプ中は回転速度を1/10にする
         if (playerJump.IsFrontJumping)
