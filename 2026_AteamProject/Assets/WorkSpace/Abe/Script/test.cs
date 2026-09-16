@@ -8,10 +8,6 @@ public class test : MonoBehaviour
     [SerializeField] private float gravityPower = 5.0f;
     [SerializeField] private float throwUpPower = 5.0f;
 
-    [Header("爆発設定")]
-    [SerializeField] private float explosionTime = 5.0f;
-    [SerializeField] private float explosionSize = 2.0f;
-
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
 
@@ -28,7 +24,6 @@ public class test : MonoBehaviour
     private bool isReady = false;
 
     private float throwTime = 0.0f;
-    private float countTime = 0.0f;
 
     private GameObject currentBomb = null;
 
