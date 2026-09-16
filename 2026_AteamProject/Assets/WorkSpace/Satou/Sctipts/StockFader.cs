@@ -6,13 +6,11 @@ public class StockFader : MonoBehaviour
 {
     [SerializeField] private float duration;
     [SerializeField] private Image crown;
-    [SerializeField] private AudioClip SEAudio;
-    [SerializeField] private AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(FadeRoutine());
-        audioSource.PlayOneShot(SEAudio);
     }
 
     // Update is called once per frame
