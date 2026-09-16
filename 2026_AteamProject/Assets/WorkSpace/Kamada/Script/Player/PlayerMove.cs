@@ -58,18 +58,10 @@ public class PlayerMove : MonoBehaviour
     {
         float currentAcceleration = playerData.Acceleration;
 
-        //前ジャンプ中は加速度を1/10にする
-        if (playerJump.IsFrontJumping)
-        {
-            currentAcceleration *= 0.1f;
-        }
-
         if (isPressed)
         {
-            //移動方向に応じた目標速度を計算
             Vector3 targetVelocity = moveDirection * playerData.MaxMoveSpeed;
 
-            //現在の速度を目標速度に向かって加速
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 targetVelocity,
@@ -78,7 +70,6 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            //キーが押されていない場合は減速
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 Vector3.zero,
@@ -86,7 +77,31 @@ public class PlayerMove : MonoBehaviour
             );
         }
 
-        //Rigidbodyの速度を更新
+        if (playerJump.IsFrontJumping)
+        {
+            Vector3 velocity = playerJump.FrontJumpVelocity;
+            //前ジャンプ中は操作量を10%にする
+            Vector3 controlVelocity = currentVelocity * 0.1f;
+
+            velocity += new Vector3(controlVelocity.x,0f,controlVelocity.z);
+
+            rb.linearVelocity = new Vector3(velocity.x,rb.linearVelocity.y,velocity.z);
+
+            return;
+        }
+
+        if (!isPressed && !playerJump.IsFrontJumping)
+        {
+            Vector3 velocity = rb.linearVelocity;
+
+            velocity.x = 0f;
+            velocity.z = 0f;
+
+            rb.linearVelocity = velocity;
+
+            return;
+        }
+
         rb.linearVelocity = new Vector3(
             currentVelocity.x,
             rb.linearVelocity.y,
