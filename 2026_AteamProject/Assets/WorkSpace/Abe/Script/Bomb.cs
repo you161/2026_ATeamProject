@@ -27,6 +27,9 @@ public class Bomb : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject omenObject = null;
 
+    [Header("コントローラ入力")]
+    [SerializeField] private PlayerControllerInput playerControllerInput = null;
+
     private bool isThrow = false;
     private bool isReady = false;
     private bool isExplosion = false;
@@ -54,7 +57,7 @@ public class Bomb : MonoBehaviour
         if (!isReady)
         {
             //Space1回目
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            if (playerControllerInput.EastButtonPressed)
             {
                 CreateBomb();
                 countTime = 0.0f;
@@ -66,7 +69,7 @@ public class Bomb : MonoBehaviour
             //爆弾を持っている状態
             currentBomb.transform.position = transform.position + Vector3.up * 2.0f;
             //Space2回目
-            if (!isThrow && Keyboard.current.spaceKey.wasPressedThisFrame)
+            if (!isThrow && playerControllerInput.EastButtonPressed)
             {
                 StartThrow();
             }
