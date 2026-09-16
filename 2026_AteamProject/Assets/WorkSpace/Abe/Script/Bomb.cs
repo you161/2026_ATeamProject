@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,12 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float throwDistance = 10.0f;
     [SerializeField] private float gravityPower = 5.0f;
     [SerializeField] private float throwUpPower = 5.0f;
+    [SerializeField] private float maxGround = -10.0f;
+
+    [Header("爆発設定")]
+    [SerializeField] private float explosionTime = 5.0f;
+    [SerializeField] private float explosionSize = 2.0f;
+    [SerializeField] private float tTime = 0.01f;
 
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
@@ -22,8 +29,13 @@ public class Bomb : MonoBehaviour
 
     private bool isThrow = false;
     private bool isReady = false;
+    private bool isExplosion = false;
+    private bool isBlast = false;
+
+    public bool IsReady { get => isReady; }
 
     private float throwTime = 0.0f;
+    private float countTime = 0.0f;
 
     private GameObject currentBomb = null;
 
@@ -45,6 +57,7 @@ public class Bomb : MonoBehaviour
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 CreateBomb();
+                countTime = 0.0f;
                 isReady = true;
             }
         }
@@ -63,12 +76,27 @@ public class Bomb : MonoBehaviour
         if (isReady && !isThrow)
         {
             DrawTrajectory();
+            CountDownExplosion();
         }
 
         //投げる処理
         if (isThrow && currentBomb != null)
         {
             ThrowBomb();
+        }
+
+        //爆発する処理
+        if (isExplosion)
+        {
+            countTime += Time.deltaTime;
+
+            if (countTime > tTime)
+            {
+                // 爆風の生成
+
+                Destroy(currentBomb.gameObject);
+                isExplosion = false;
+            }
         }
     }
 
@@ -79,6 +107,7 @@ public class Bomb : MonoBehaviour
             transform.position + Vector3.up * 2.0f,
             bombObject.transform.rotation
         );
+        omenObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void StartThrow()
@@ -133,11 +162,28 @@ public class Bomb : MonoBehaviour
         //爆弾を移動
         currentBomb.transform.position = position;
         float distance = Vector3.Distance(currentBomb.transform.position, omenObject.transform.position);
-        if (distance < 0.1f)
+        if (distance < 0.1f || currentBomb.transform.position.y <= maxGround)
         {
             isThrow = false;
             isReady = false;
-            currentBomb = null;
+            isExplosion = true;
+            countTime = 0.0f;
+            currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
+            omenObject.transform.GetChild(0).gameObject.SetActive(false); // omenObject.SetActive(false);
+        }
+    }
+
+    private void CountDownExplosion()
+    {
+        countTime += Time.deltaTime;
+
+        if (countTime > explosionTime)
+        {
+            isReady = false;
+            isExplosion = true;
+            countTime = 0.0f;
+            lineRenderer.positionCount = 0;
+            currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
             omenObject.SetActive(false);
         }
     }
@@ -202,17 +248,17 @@ public class Bomb : MonoBehaviour
 
                 break;
             }
-            else if (nextPosition.y < 0.0f)
-            {
-                nextPosition.y = 0.0f;
-                lineRenderer.positionCount++;
-                lineRenderer.SetPosition(lineRenderer.positionCount - 1, nextPosition);
+            //else if (nextPosition.y < 0.0f)
+            //{
+            //    nextPosition.y = 0.0f;
+            //    lineRenderer.positionCount++;
+            //    lineRenderer.SetPosition(lineRenderer.positionCount - 1, nextPosition);
 
-                omenObject.transform.position = nextPosition;
-                omenObject.SetActive(true);
+            //    omenObject.transform.position = nextPosition;
+            //    omenObject.SetActive(true);
 
-                break;
-            }
+            //    break;
+            //}
 
             //ポイント追加
             lineRenderer.positionCount++;
