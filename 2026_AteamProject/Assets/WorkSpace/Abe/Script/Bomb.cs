@@ -116,7 +116,7 @@ public class Bomb : MonoBehaviour
         );
         currentBombScript = currentBomb.GetComponent<BombCollider>();
         currentBombCapsule = currentBomb.transform.GetChild(1).gameObject;
-        currentBombCapsule.SetActive( false );
+        currentBombCapsule.SetActive(false);
     }
 
     private void StartThrow()

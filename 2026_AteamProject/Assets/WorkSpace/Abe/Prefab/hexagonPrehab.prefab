@@ -96,15 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d79436758d38148b83a221e1b184f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  myRigidbody: {fileID: 7288353487701259814}
   myRenderer: {fileID: 7309913972523988812}
   changeMaterial: {fileID: 2100000, guid: 294eca77bd9ff34428fd9da830108328, type: 2}
-  Resize: 0.95
-  FallingTime: 1.5
-  FallingSpeed: -3
+  fallingSize: 1
+  fallingTime: 1.5
+  fallingSpeed: -5
   vanishSpeed: -1
-  ResetTime: 1
-  FlashTime: 0.5
+  resetTime: 1
+  flashTime: 0.5
   isLoop: 1
 --- !u!1001 &8265123079933815752
 PrefabInstance:
