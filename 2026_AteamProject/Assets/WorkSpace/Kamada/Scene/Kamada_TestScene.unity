@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 461494340}
   - component: {fileID: 461494339}
   - component: {fileID: 461494338}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: TestGround
   m_TagString: Finish
   m_Icon: {fileID: 0}
