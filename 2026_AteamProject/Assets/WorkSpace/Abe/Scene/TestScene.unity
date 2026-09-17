@@ -1150,6 +1150,7 @@ MonoBehaviour:
     m_Bits: 0
   omenObject: {fileID: 1264348590}
   playerControllerInput: {fileID: 0}
+  playerJump: {fileID: 0}
 --- !u!120 &803103318
 LineRenderer:
   serializedVersion: 3
@@ -2838,6 +2839,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1049146316}
     m_Modifications:
+    - target: {fileID: 1264775093833913947, guid: cbeaf3edcd1a50343958fc35895f7550, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1718296253200363000, guid: cbeaf3edcd1a50343958fc35895f7550, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

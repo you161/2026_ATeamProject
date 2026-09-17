@@ -11,11 +11,6 @@ public class gaugeTest : MonoBehaviour
 
     private bool isCoolDown = false;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         Vector3 imagePos = gaugeImage.rectTransform.position;

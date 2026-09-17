@@ -102,7 +102,7 @@ MonoBehaviour:
   fallingTime: 1.5
   fallingSpeed: -5
   vanishSpeed: -1
-  resetTime: 1
+  resetTime: 10
   flashTime: 0.5
   isLoop: 1
 --- !u!1001 &8265123079933815752

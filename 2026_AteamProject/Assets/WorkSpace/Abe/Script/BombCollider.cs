@@ -5,9 +5,9 @@ public class BombCollider : MonoBehaviour
     private bool isFlag = false;
     public bool IsFlag { get => isFlag; }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             isFlag = true;
         }

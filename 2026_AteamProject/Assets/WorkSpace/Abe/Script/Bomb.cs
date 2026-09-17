@@ -55,6 +55,9 @@ public class Bomb : MonoBehaviour
     private BombCollider currentBombScript = null;
     private GameObject currentBombCapsule = null;
 
+    // ゲージの初めの高さ
+    private float gaugeHeight = 0.0f;
+
     //投げ始めた位置
     private Vector3 throwStartPosition;
 
@@ -64,22 +67,30 @@ public class Bomb : MonoBehaviour
     private void Start()
     {
         omenObject.SetActive(false);
+        gaugeHeight = gaugeImage.rectTransform.position.y;
     }
     private void Update()
     {
         Vector3 gaugePos = gaugeImage.rectTransform.position;
         gaugePos = transform.position;
-        gaugePos.y = gaugeImage.rectTransform.position.y;
+
+        if (gaugePos.y > gaugeHeight)
+        {
+            gaugePos.y = gaugeHeight;
+        }
         gaugeImage.rectTransform.position = gaugePos;
 
-        if (!isReady && !isCoolDown)
+        if (!isReady)
         {
             //Space1回目
-            if(!playerJump.IsFrontJumping && playerControllerInput.EastButtonPressed)
+            if (!isCoolDown)
             {
-                CreateBomb();
-                countTime = 0.0f;
-                isReady = true;
+                if (!playerJump.IsFrontJumping && playerControllerInput.EastButtonPressed)
+                {
+                    CreateBomb();
+                    countTime = 0.0f;
+                    isReady = true;
+                }
             }
         }
         else
@@ -91,6 +102,9 @@ public class Bomb : MonoBehaviour
             {
                 StartThrow();
                 isCoolDown = true;
+                Color color = gaugeImage.color;
+                color.r = 0.75f;
+                gaugeImage.color = color;
                 gaugeImage.fillAmount = 0.0f;
             }
         }
@@ -116,6 +130,9 @@ public class Bomb : MonoBehaviour
             if (gaugeImage.fillAmount >= 1.0f)
             {
                 isCoolDown = false;
+                Color color = gaugeImage.color;
+                color.r = 1.0f;
+                gaugeImage.color = color;
             }
         }
 
@@ -229,6 +246,10 @@ public class Bomb : MonoBehaviour
             isReady = false;
             isExplosion = true;
             isCoolDown = true;
+            Color color = gaugeImage.color;
+            color.r = 0.5f;
+            gaugeImage.color = color;
+            gaugeImage.fillAmount = 0.0f;
             countTime = 0.0f;
             lineRenderer.positionCount = 0;
             currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
