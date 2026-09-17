@@ -20,14 +20,14 @@ public class TestEfects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            WinnerCountP1();
-        }
-        else if(Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            WinnerCountP2();
-        }
+        //if(Keyboard.current.enterKey.wasPressedThisFrame)
+        //{
+        //    WinnerCountP1();
+        //}
+        //else if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        //{
+        //    WinnerCountP2();
+        //}
     }
 
     //P1勝利時のUI変更処理
