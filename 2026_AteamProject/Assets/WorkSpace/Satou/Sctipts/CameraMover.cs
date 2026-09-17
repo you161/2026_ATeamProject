@@ -10,6 +10,7 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private float crownPos;
     [SerializeField] private float crownSpeed;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private ResaultSceneManager resaultSceneManager = null;
     private Coroutine resultCoroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,5 +56,6 @@ public class CameraMover : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
 
         }
+        resaultSceneManager.IsWait = true;
     }
 }
