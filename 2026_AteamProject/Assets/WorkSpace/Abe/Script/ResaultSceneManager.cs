@@ -9,13 +9,17 @@ public class ResaultSceneManager : MonoBehaviour
 
     void Update()
     {
+        var gamepad = Gamepad.current;
+
         if (IsWait)
         {
-            if (Gamepad.current.bButton.wasPressedThisFrame)
+            if ((gamepad != null && Gamepad.current.bButton.wasPressedThisFrame) || 
+                Keyboard.current.shiftKey.wasPressedThisFrame)
             {
                 gameSceneManeger.LoadMainScene();
             }
-            if (Gamepad.current.aButton.wasPressedThisFrame)
+            if ((gamepad != null && Gamepad.current.aButton.wasPressedThisFrame) || 
+                Keyboard.current.ctrlKey.wasPressedThisFrame)
             {
                 gameSceneManeger.LoadTitleScene();
             }
