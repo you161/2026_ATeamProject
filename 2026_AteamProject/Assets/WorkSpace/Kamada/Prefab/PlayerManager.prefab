@@ -222,11 +222,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5504070712562846147}
   - {fileID: 6732974157522034096}
   - {fileID: 1734634599076830682}
   - {fileID: 6106915860855723141}
   - {fileID: 4392863322509759939}
+  - {fileID: 5504070712562846147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3041621692671846807
@@ -690,11 +690,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1718296253200363000, guid: cbeaf3edcd1a50343958fc35895f7550, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1718296253200363000, guid: cbeaf3edcd1a50343958fc35895f7550, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1718296253200363000, guid: cbeaf3edcd1a50343958fc35895f7550, type: 3}
       propertyPath: m_LocalPosition.x
@@ -778,18 +778,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 2011204257087415709}
     m_Modifications:
     - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: tTime
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: maxGround
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: bombEffect
-      value: 
-      objectReference: {fileID: 4914716930404006884, guid: aed12c224fbc8704d8eaa07a52e88f44, type: 3}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: gaugeImage
       value: 
       objectReference: {fileID: 370275215662095478}
@@ -798,29 +786,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6711265236519572014}
     - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: cooldownTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: gravityPower
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 4951144133282772384}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: throwUpPower
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: throwDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: playerKnokback
-      value: 
-      objectReference: {fileID: 367351229694337331}
     - target: {fileID: 1497822657333633818, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: m_Name
       value: Player
@@ -865,10 +833,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4819171960350234518, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5540215876860959113, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: shadowObject
       value: 
@@ -877,30 +841,11 @@ PrefabInstance:
       propertyPath: shadowObject
       value: 
       objectReference: {fileID: 872013768889097959}
-    - target: {fileID: 7831840702288854901, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 50f4f650baa43b1408de3fd04d2f67db, type: 2}
-    - target: {fileID: 9063516002051265938, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-      propertyPath: m_LinearDamping
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
---- !u!114 &367351229694337331 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8293003944076802204, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
-  m_PrefabInstance: {fileID: 8507225862899734959}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e6df7f0d4f536b4bae51a2bccd23ffb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerKnockback
 --- !u!4 &6732974157522034096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3134479551835128863, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
