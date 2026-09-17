@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Bomb : MonoBehaviour
@@ -15,9 +15,15 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float explosionSize = 2.0f;
     [SerializeField] private float tTime = 0.01f;
 
+    [Header("クールダウン設定")]
+    [SerializeField] private Image gaugeImage = null;
+    [SerializeField] private float cooldownTime = 0.0f;
+
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
-    [SerializeField] private MeshCollider bombCollider = null;
+
+    [Header("爆風エフェクト")]
+    [SerializeField] private GameObject bombEffect = null;
 
     [Header("軌道")]
     [SerializeField] private LineRenderer lineRenderer = null;
@@ -34,6 +40,7 @@ public class Bomb : MonoBehaviour
     private bool isThrow = false;
     private bool isReady = false;
     private bool isExplosion = false;
+    private bool isCoolDown = false;
     private bool isBlast = false;
 
     public bool IsReady { get => isReady; }
@@ -57,7 +64,12 @@ public class Bomb : MonoBehaviour
     }
     private void Update()
     {
-        if (!isReady)
+        Vector3 gaugePos = gaugeImage.rectTransform.position;
+        gaugePos = transform.position;
+        gaugePos.y = gaugeImage.rectTransform.position.y;
+        gaugeImage.rectTransform.position = gaugePos;
+
+        if (!isReady && !isCoolDown)
         {
             //Space1回目
             if (playerControllerInput.EastButtonPressed)
@@ -75,6 +87,8 @@ public class Bomb : MonoBehaviour
             if (!isThrow && playerControllerInput.EastButtonPressed)
             {
                 StartThrow();
+                isCoolDown = true;
+                gaugeImage.fillAmount = 0.0f;
             }
         }
 
@@ -91,6 +105,17 @@ public class Bomb : MonoBehaviour
             ThrowBomb();
         }
 
+        // クールダウン処理
+        if (isCoolDown)
+        {
+            gaugeImage.fillAmount += 1.0f / cooldownTime * Time.deltaTime;
+
+            if (gaugeImage.fillAmount >= 1.0f)
+            {
+                isCoolDown = false;
+            }
+        }
+
         //爆発する処理
         if (isExplosion)
         {
@@ -98,7 +123,7 @@ public class Bomb : MonoBehaviour
 
             if (countTime > tTime)
             {
-                // 爆風の生成
+                Instantiate(bombEffect, currentBomb.transform.position, Quaternion.identity);
 
                 Destroy(currentBomb.gameObject);
                 currentBomb = null;
@@ -200,6 +225,7 @@ public class Bomb : MonoBehaviour
         {
             isReady = false;
             isExplosion = true;
+            isCoolDown = true;
             countTime = 0.0f;
             lineRenderer.positionCount = 0;
             currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
