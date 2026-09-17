@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 currentVelocity = Vector3.zero;
     private bool isPressed = false;
+    private CountDown countDown;
 
     private void Start()
     {
@@ -19,10 +20,31 @@ public class PlayerMove : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         moveDirection = Vector3.zero;
         isPressed = false;
+
+        GameObject countDownObj = GameObject.Find("CountDown");
+        if (countDownObj != null)
+        {
+            countDown = countDownObj.GetComponent<CountDown>();
+        }
+
+        if (countDown == null)
+        {
+            Debug.Log("countDown is null");
+        }
     }
 
     private void Update()
     {
+        if (countDown.IsPlayCount && !countDown.IsGo)
+        {
+            currentVelocity = Vector3.zero;
+            moveDirection = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            return;
+        }
+
         if (playerKnockback.IsKnockback)
         {
             return;

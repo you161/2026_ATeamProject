@@ -14,10 +14,14 @@ public class PlayerJump : MonoBehaviour
     private bool isJumping = false;
     private bool isFrontJumping = false;
 
-    //前ジャンプ開始からの時間
+    // 前ジャンプ開始からの時間
     private float currentTime = 0f;
 
-    public bool IsFrontJumping { get => isFrontJumping; }
+    public bool IsFrontJumping
+    {
+        get => isFrontJumping;
+    }
+
     private Vector3 frontJumpVelocity = Vector3.zero;
 
     public Vector3 FrontJumpVelocity
@@ -25,17 +29,46 @@ public class PlayerJump : MonoBehaviour
         get => frontJumpVelocity;
     }
 
+    private CountDown countDown;
+
     private void Start()
     {
         isGrounded = true;
         isJumping = false;
         isFrontJumping = false;
 
-        rb.useGravity = true;
+        rb.useGravity = false;
+
+        GameObject countDownObj = GameObject.Find("CountDown");
+
+        if (countDownObj != null)
+        {
+            countDown = countDownObj.GetComponent<CountDown>();
+        }
+
+        if (countDown == null)
+        {
+            Debug.Log("countDown is null");
+        }
     }
 
     private void Update()
     {
+        //カウントダウン中
+        if (countDown.IsPlayCount && !countDown.IsGo)
+        {
+            rb.useGravity = false;
+            ResetJump();
+
+            return;
+        }
+
+        //GO後
+        if (!rb.useGravity)
+        {
+            rb.useGravity = true;
+        }
+
         if (playerControllerInput.SouthButtonPressed)
         {
             OnJump();
@@ -75,7 +108,7 @@ public class PlayerJump : MonoBehaviour
         {
             StartFrontJump();
         }
-        else if(!isFrontJumping && bomb.IsReady && bomb.IsThrow)
+        else if (!isFrontJumping && bomb.IsReady && bomb.IsThrow)
         {
             StartFrontJump();
         }
@@ -133,20 +166,43 @@ public class PlayerJump : MonoBehaviour
 
         if (currentTime >= playerData.FrontJumpTime)
         {
-            isFrontJumping = false;
-            currentTime = 0f;
-
-            //前ジャンプ終了時に前方向の速度を止める
-            Vector3 velocity = rb.linearVelocity;
-            velocity.x = 0f;
-            velocity.z = 0f;
-            rb.linearVelocity = velocity;
-
-            //前傾解除
-            Vector3 playerAngle = player.localEulerAngles;
-            playerAngle.x = 0f;
-            player.localEulerAngles = playerAngle;
+            ResetFrontJump();
         }
+    }
+
+    private void ResetFrontJump()
+    {
+        isFrontJumping = false;
+        currentTime = 0f;
+
+        //前方向の速度を止める
+        Vector3 velocity = rb.linearVelocity;
+        velocity.x = 0f;
+        velocity.z = 0f;
+        rb.linearVelocity = velocity;
+
+        ResetPlayerRotation();
+    }
+
+    private void ResetJump()
+    {
+        isGrounded = true;
+        isJumping = false;
+        isFrontJumping = false;
+
+        currentTime = 0f;
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        ResetPlayerRotation();
+    }
+
+    private void ResetPlayerRotation()
+    {
+        Vector3 playerAngle = player.localEulerAngles;
+        playerAngle.x = 0f;
+        player.localEulerAngles = playerAngle;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -156,19 +212,6 @@ public class PlayerJump : MonoBehaviour
             return;
         }
 
-        isGrounded = true;
-        isJumping = false;
-        isFrontJumping = false;
-
-        rb.useGravity = true;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-        currentTime = 0f;
-
-        //前傾を解除
-        Vector3 playerAngle = player.localEulerAngles;
-        playerAngle.x = 0f;
-        player.localEulerAngles = playerAngle;
+        ResetJump();
     }
 }

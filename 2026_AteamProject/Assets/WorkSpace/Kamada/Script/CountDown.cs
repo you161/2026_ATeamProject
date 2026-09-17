@@ -14,6 +14,7 @@ public class CountDown : MonoBehaviour
     private bool isPlayCount = false;
     private bool isGo = false;
     public bool IsPlayCount { get => isPlayCount; }
+    public bool IsGo { get => isGo; }
 
     private void Start()
     {
