@@ -37,6 +37,8 @@ public class Bomb : MonoBehaviour
     [Header("コントローラ入力")]
     [SerializeField] private PlayerControllerInput playerControllerInput = null;
 
+    [SerializeField] private PlayerJump playerJump = null;
+
     private bool isThrow = false;
     private bool isReady = false;
     private bool isExplosion = false;
@@ -44,6 +46,7 @@ public class Bomb : MonoBehaviour
     private bool isBlast = false;
 
     public bool IsReady { get => isReady; }
+    public bool IsThrow { get => isThrow; }
 
     private float throwTime = 0.0f;
     private float countTime = 0.0f;
@@ -72,7 +75,7 @@ public class Bomb : MonoBehaviour
         if (!isReady && !isCoolDown)
         {
             //Space1回目
-            if (playerControllerInput.EastButtonPressed)
+            if(!playerJump.IsFrontJumping && playerControllerInput.EastButtonPressed)
             {
                 CreateBomb();
                 countTime = 0.0f;
