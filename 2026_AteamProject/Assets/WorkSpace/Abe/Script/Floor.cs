@@ -1,7 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
+    [SerializeField] private RaundManager raundManager = null;
+
+    [Header("コライダー")]
+    [SerializeField] private MeshCollider myCollider = null;
+
     [Header("マテリアル")]
     [SerializeField] private Renderer myRenderer;
     [SerializeField] private Material changeMaterial;
@@ -33,14 +39,31 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Update()
     {
+        // ステージの落下
         if (isFalling)
         {
             FallingFloor();
         }
 
+        // ステージのリセット
         if (isReset && isLoop)
         {
             ResetFloor();
+        }
+
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            isFalling = false;
+            isReset = false;
+            fallingTimer = 0.0f;
+            resetTimer = 0.0f;
+            transform.GetChild(0).gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            transform.position = startPosition;
+            myCollider.isTrigger = false;
+            myRenderer.material = baseMaterial;
+            Color color = myRenderer.material.color;
+            color.a = 1.0f;
+            myRenderer.material.color = color;
         }
     }
 
@@ -58,10 +81,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             color.a = Mathf.Max(0.0f, color.a);
             myRenderer.material.color = color;
 
-            isReset = true;
+            if (!isReset) isReset = true;
 
             if (currentPosition.y < maxGround)
             {
+                myCollider.isTrigger = true;
                 fallingTimer = 0.0f;
                 isFalling = false;
             }
@@ -79,6 +103,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
             if (resetTimer > flashTime)
             {
+                myCollider.isTrigger = false;
                 color.a = 1.0f;
                 isReset = false;
                 resetTimer = 0.0f;
@@ -91,6 +116,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             transform.GetChild(0).gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             transform.position = startPosition;
             myRenderer.material = baseMaterial;
+            myCollider.isTrigger = true;
+            isFalling = false;
             resetTimer = 0.0f;
         }
     }
@@ -112,12 +139,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isReset)
+        {
+            return;
+        }
+
         if (other.gameObject.CompareTag("Bomb"))
         {
             Color color = myRenderer.material.color;
             color.a = 0.0f;
             myRenderer.material.color = color;
             transform.position = new Vector3(transform.position.x, -10.0f, transform.position.z);
+            myCollider.isTrigger = true;
             isReset = true;
         }
     }
