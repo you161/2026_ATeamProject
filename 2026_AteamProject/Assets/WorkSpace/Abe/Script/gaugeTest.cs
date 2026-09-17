@@ -1,23 +1,42 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class gaugeTest : MonoBehaviour
 {
     [SerializeField] private Image gaugeImage = null;
-    [SerializeField] private float coolDownTime = 0.0f;
+    [SerializeField] private float cooldownTime = 0.0f;
 
-    public float countTime = 0.0f;
+    private bool isCoolDown = false;
 
     void Start()
     {
-        gaugeImage.fillAmount = 0.0f;
+
     }
 
     void Update()
     {
-        countTime += Time.deltaTime;
-        gaugeImage.fillAmount += 1.0f / coolDownTime * Time.deltaTime;
+        Vector3 imagePos = gaugeImage.rectTransform.position;
+        imagePos = transform.position;
+        imagePos.y = gaugeImage.rectTransform.position.y;
+        gaugeImage.rectTransform.position = imagePos;
 
-        if (countTime >= coolDownTime) countTime = coolDownTime;
+        if (isCoolDown)
+        {
+            gaugeImage.fillAmount += 1.0f / cooldownTime * Time.deltaTime;
+
+            if (gaugeImage.fillAmount >= 1.0f)
+            {
+                isCoolDown = false;
+            }
+        }
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            gaugeImage.fillAmount = 0.0f;
+            isCoolDown = true;
+        }
     }
 }

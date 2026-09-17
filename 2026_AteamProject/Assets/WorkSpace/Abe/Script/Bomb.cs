@@ -16,7 +16,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float tTime = 0.01f;
 
     [Header("クールダウン設定")]
-    [SerializeField] private Image bombImage = null;
+    [SerializeField] private Image gaugeImage = null;
     [SerializeField] private float cooldownTime = 0.0f;
 
     [Header("爆弾")]
@@ -64,7 +64,10 @@ public class Bomb : MonoBehaviour
     }
     private void Update()
     {
-        bombImage.transform.position = transform.position;
+        Vector3 gaugePos = gaugeImage.rectTransform.position;
+        gaugePos = transform.position;
+        gaugePos.y = gaugeImage.rectTransform.position.y;
+        gaugeImage.rectTransform.position = gaugePos;
 
         if (!isReady && !isCoolDown)
         {
@@ -85,7 +88,7 @@ public class Bomb : MonoBehaviour
             {
                 StartThrow();
                 isCoolDown = true;
-                bombImage.fillAmount = 0.0f;
+                gaugeImage.fillAmount = 0.0f;
             }
         }
 
@@ -105,9 +108,9 @@ public class Bomb : MonoBehaviour
         // クールダウン処理
         if (isCoolDown)
         {
-            bombImage.fillAmount += 1.0f / cooldownTime * Time.deltaTime;
+            gaugeImage.fillAmount += 1.0f / cooldownTime * Time.deltaTime;
 
-            if (bombImage.fillAmount >= 1.0f)
+            if (gaugeImage.fillAmount >= 1.0f)
             {
                 isCoolDown = false;
             }
