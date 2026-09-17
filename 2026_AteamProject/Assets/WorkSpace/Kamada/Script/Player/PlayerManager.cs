@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GamePadPlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] private Transform[] spawnPoints = null;
     [SerializeField] private int maxPlayerCount = 2;
 
+    private PlayerInput[] players;
+
     private void Start()
     {
+        players = new PlayerInput[maxPlayerCount];
         CreatePlayers();
     }
 
@@ -16,8 +19,9 @@ public class GamePadPlayerManager : MonoBehaviour
     {
         //接続されているゲームパッドの数を取得
         int gamepadCount = Gamepad.all.Count;
+
         //最大プレイヤー数とスポーンポイントの数を考慮して、生成するプレイヤー数を決定
-        int playerCount = Mathf.Min(maxPlayerCount,spawnPoints.Length);;
+        int playerCount = Mathf.Min(maxPlayerCount, spawnPoints.Length);
 
         for (int i = 0; i < playerCount; i++)
         {
@@ -48,20 +52,25 @@ public class GamePadPlayerManager : MonoBehaviour
             playerInput = PlayerInput.Instantiate(playerPrefab,playerIndex: playerIndex);
         }
 
+        //プレイヤーを保存
+        players[playerIndex] = playerInput;
         //操作方法を決定
-        PlayerControllerInput controllerInput =
-            playerInput.GetComponent<PlayerControllerInput>();
+        PlayerControllerInput controllerInput = playerInput.GetComponent<PlayerControllerInput>();
 
         if (playerIndex == 0)
         {
             //P1
             if (playerIndex < gamepadCount)
             {
-                controllerInput.SetInputType(PlayerControllerInput.InputType.GamePad);
+                controllerInput.SetInputType(
+                    PlayerControllerInput.InputType.GamePad
+                );
             }
             else
             {
-                controllerInput.SetInputType(PlayerControllerInput.InputType.WASD);
+                controllerInput.SetInputType(
+                    PlayerControllerInput.InputType.WASD
+                );
             }
         }
         else
@@ -69,16 +78,35 @@ public class GamePadPlayerManager : MonoBehaviour
             //P2
             if (playerIndex < gamepadCount)
             {
-                controllerInput.SetInputType(PlayerControllerInput.InputType.GamePad);
+                controllerInput.SetInputType(
+                    PlayerControllerInput.InputType.GamePad
+                );
             }
             else
             {
-                controllerInput.SetInputType(PlayerControllerInput.InputType.Arrow);
+                controllerInput.SetInputType(
+                    PlayerControllerInput.InputType.Arrow
+                );
             }
         }
 
-        // スポーン位置
+        //スポーン位置
         playerInput.transform.position = spawnPoints[playerIndex].position;
         playerInput.transform.rotation = spawnPoints[playerIndex].rotation;
+    }
+
+    //プレイヤーの位置をスポーン位置にリセット
+    public void ResetPlayerPositions()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i] == null)
+            {
+                continue;
+            }
+
+            players[i].transform.position = spawnPoints[i].position;
+            players[i].transform.rotation = spawnPoints[i].rotation;
+        }
     }
 }

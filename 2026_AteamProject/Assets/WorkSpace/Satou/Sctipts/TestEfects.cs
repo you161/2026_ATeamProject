@@ -20,18 +20,18 @@ public class TestEfects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            WinnerCountP1();
-        }
-        else if(Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            WinnerCountP2();
-        }
+        //if(Keyboard.current.enterKey.wasPressedThisFrame)
+        //{
+        //    WinnerCountP1();
+        //}
+        //else if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        //{
+        //    WinnerCountP2();
+        //}
     }
 
     //P1勝利時のUI変更処理
-    private void WinnerCountP1()
+    public void WinnerCountP1()
     {
         if (winnerP1 < winnerAnimaP1.Count)
         {
@@ -42,7 +42,7 @@ public class TestEfects : MonoBehaviour
         }
     }
     //P2勝利時のUI変更処理
-    private void WinnerCountP2()
+    public void WinnerCountP2()
     {
         if (winnerP2 < winnerAnimaP2.Count)
         {
