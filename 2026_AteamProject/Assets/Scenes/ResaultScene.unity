@@ -212,6 +212,7 @@ MonoBehaviour:
   crownPos: 1.3
   crownSpeed: -7
   playerAnimator: {fileID: 1137997515}
+  resaultSceneManager: {fileID: 1762673628}
 --- !u!4 &170456023
 Transform:
   m_ObjectHideFlags: 0
@@ -663,6 +664,22 @@ PrefabInstance:
     - target: {fileID: 7198721639834047729, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
       propertyPath: m_Name
       value: GameSceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007827893278078643, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: mainSceneName
+      value: MainScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007827893278078643, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: titleSceneName
+      value: TitleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007827893278078643, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: resaultSceneName
+      value: ResaultScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007827893278078643, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: tutorialSceneName
+      value: TutorialScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1171,6 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResaultSceneManager
   gameSceneManeger: {fileID: 733304192}
+  IsWait: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
