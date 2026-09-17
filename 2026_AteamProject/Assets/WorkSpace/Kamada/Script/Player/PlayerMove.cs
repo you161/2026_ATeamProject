@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 currentVelocity = Vector3.zero;
     private bool isPressed = false;
+    private bool isMove = false;
+    public bool IsMove { get => isMove; }
     private CountDown countDown;
 
     private void Start()
@@ -20,8 +22,9 @@ public class PlayerMove : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         moveDirection = Vector3.zero;
         isPressed = false;
+        isMove = false;
 
-        GameObject countDownObj = GameObject.Find("CountDown");
+        GameObject countDownObj = GameObject.Find("CountDownManager");
         if (countDownObj != null)
         {
             countDown = countDownObj.GetComponent<CountDown>();
@@ -89,6 +92,8 @@ public class PlayerMove : MonoBehaviour
                 targetVelocity,
                 currentAcceleration * Time.fixedDeltaTime
             );
+
+            isMove = true;
         }
         else
         {
@@ -97,6 +102,8 @@ public class PlayerMove : MonoBehaviour
                 Vector3.zero,
                 playerData.Deceleration * Time.fixedDeltaTime
             );
+
+            isMove = false;
         }
 
         if (playerJump.IsFrontJumping)
@@ -108,18 +115,6 @@ public class PlayerMove : MonoBehaviour
             velocity += new Vector3(controlVelocity.x,0f,controlVelocity.z);
 
             rb.linearVelocity = new Vector3(velocity.x,rb.linearVelocity.y,velocity.z);
-
-            return;
-        }
-
-        if (!isPressed && !playerJump.IsFrontJumping)
-        {
-            Vector3 velocity = rb.linearVelocity;
-
-            velocity.x = 0f;
-            velocity.z = 0f;
-
-            rb.linearVelocity = velocity;
 
             return;
         }

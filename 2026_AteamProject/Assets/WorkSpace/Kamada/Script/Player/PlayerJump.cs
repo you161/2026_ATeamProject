@@ -16,18 +16,12 @@ public class PlayerJump : MonoBehaviour
 
     // 前ジャンプ開始からの時間
     private float currentTime = 0f;
-
-    public bool IsFrontJumping
-    {
-        get => isFrontJumping;
-    }
-
     private Vector3 frontJumpVelocity = Vector3.zero;
 
-    public Vector3 FrontJumpVelocity
-    {
-        get => frontJumpVelocity;
-    }
+    public bool IsFrontJumping { get => isFrontJumping; }
+    public bool IsJumping { get => isJumping; }
+
+    public Vector3 FrontJumpVelocity { get => frontJumpVelocity; }
 
     private CountDown countDown;
 
@@ -39,7 +33,7 @@ public class PlayerJump : MonoBehaviour
 
         rb.useGravity = false;
 
-        GameObject countDownObj = GameObject.Find("CountDown");
+        GameObject countDownObj = GameObject.Find("CountDownManager");
 
         if (countDownObj != null)
         {
