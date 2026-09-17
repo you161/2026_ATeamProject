@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 
 public class Bomb : MonoBehaviour
 {
     [Header("SE")]
-    [SerializeField] private AudioSource myAudioSource = null;
-    [SerializeField] private AudioClip ac_bombPick = null;
-    [SerializeField] private AudioClip ac_bomb_1 = null;
+    [SerializeField] private SEManager seManager = null;
 
     [Header("投擲設定")]
     [SerializeField] private float throwDistance = 10.0f;
@@ -97,7 +96,7 @@ public class Bomb : MonoBehaviour
                 {
                     CreateBomb();
                     isReady = true;
-                    if (myAudioSource != null) myAudioSource.PlayOneShot(ac_bombPick);
+                    seManager.BombPickupSE();
                     countTime = 0.0f;
                 }
             }
@@ -155,7 +154,7 @@ public class Bomb : MonoBehaviour
             {
                 Instantiate(bombEffect, currentBomb.transform.position, Quaternion.identity);
 
-                if (myAudioSource != null) myAudioSource.PlayOneShot(ac_bomb_1);
+                seManager.BombExplodeSE();
 
                 Destroy(currentBomb.gameObject);
                 currentBomb = null;
@@ -234,6 +233,7 @@ public class Bomb : MonoBehaviour
             isThrow = false;
             isReady = false;
             isExplosion = true;
+            currentBombCapsule.SetActive(true);
             countTime = 0.0f;
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject player in players)
