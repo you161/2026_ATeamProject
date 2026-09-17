@@ -17,7 +17,9 @@ public class Bomb : MonoBehaviour
 
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
-    [SerializeField] private MeshCollider bombCollider = null;
+
+    [Header("爆風エフェクト")]
+    [SerializeField] private GameObject bombEffect = null;
 
     [Header("軌道")]
     [SerializeField] private LineRenderer lineRenderer = null;
@@ -98,7 +100,7 @@ public class Bomb : MonoBehaviour
 
             if (countTime > tTime)
             {
-                // 爆風の生成
+                Instantiate(bombEffect, currentBomb.transform.position, Quaternion.identity);
 
                 Destroy(currentBomb.gameObject);
                 currentBomb = null;
