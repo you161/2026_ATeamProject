@@ -779,7 +779,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: tTime
-      value: 0.1
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: maxGround
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: bombEffect
@@ -798,9 +802,21 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: gravityPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 4951144133282772384}
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: throwUpPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: throwDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1497822657333633818, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: m_Name
       value: Player
