@@ -318,6 +318,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 499180663}
+    - target: {fileID: 7571342783003862162, guid: aa5ee76b7c7474b49ab0b526a1493bb3, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 3971c68b08c845142a2e37459bac1dfb, type: 3}
+    - target: {fileID: 7571342783003862162, guid: aa5ee76b7c7474b49ab0b526a1493bb3, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: b3cb9aaca021ddc4e83d7d4fc02d6790, type: 2}
+    - target: {fileID: 8747825587919865874, guid: aa5ee76b7c7474b49ab0b526a1493bb3, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: b3cb9aaca021ddc4e83d7d4fc02d6790, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -695,6 +707,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7197376440872480674, guid: 76fe8483317ce7f4b9dbbffd713df27a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142382087259353424, guid: 76fe8483317ce7f4b9dbbffd713df27a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5795fa56ade12ff47878046bda6d452b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
