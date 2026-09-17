@@ -11,23 +11,13 @@ public class TestEfects : MonoBehaviour
 
     [SerializeField] private int winnerP1 = 0;
     [SerializeField] private int winnerP2 = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int CountP1 { get => winnerP1; }
+    public int CountP2 { get => winnerP2; }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        //if(Keyboard.current.enterKey.wasPressedThisFrame)
-        //{
-        //    WinnerCountP1();
-        //}
-        //else if(Keyboard.current.spaceKey.wasPressedThisFrame)
-        //{
-        //    WinnerCountP2();
-        //}
+        winnerP1 = 0;
+        winnerP2 = 0;
     }
 
     //P1勝利時のUI変更処理
@@ -38,7 +28,7 @@ public class TestEfects : MonoBehaviour
             winnerAnimaP1[winnerP1].SetTrigger("Winner");
             stockP1[winnerP1].SetActive(true);
             winnerP1++;
-            Debug.Log("WinnerP1 Stock " + winnerP1);
+            //Debug.Log("WinnerP1 Stock " + winnerP1);
         }
     }
     //P2勝利時のUI変更処理
@@ -49,7 +39,7 @@ public class TestEfects : MonoBehaviour
             winnerAnimaP2[winnerP2].SetTrigger("Winner");
             stockP2[winnerP2].SetActive(true);
             winnerP2++;
-            Debug.Log("WinnerP2 Stock " + winnerP2);
+            //Debug.Log("WinnerP2 Stock " + winnerP2);
         }
 
     }
