@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,13 +12,22 @@ public class RaundManager : MonoBehaviour
 
     [Header("ラウンド終了")]
     [SerializeField] private float raundOverTime = 3.0f;
+    [Header("勝利ラウンド数")]
+    [SerializeField] private int maxCount = 3;
 
     [Header("フェード")]
     [SerializeField] private FadeManager fadeManager = null;
+    [Header("プレイヤーマネージャー")]
     [SerializeField] private PlayerManager playerManager = null;
+    [Header("カウントダウン")]
     [SerializeField] private CountDown countDown = null;
+    [Header("シーンマネージャー")]
+    [SerializeField] private GameSceneManager gameSceneManager = null;
+    [SerializeField] private TestEfects testEffects = null;
+    [SerializeField] private WinnerData winnerData = null;
 
     private bool isRoundOver = false;
+    private bool isEnd = false;
 
     private void Start()
     {
@@ -24,6 +35,11 @@ public class RaundManager : MonoBehaviour
         {
             raundOverUI[i].SetActive(false);
         }
+
+        isRoundOver = false;
+        isEnd = false;
+
+        winnerData.WinnerNumber = 0;
     }
 
     private void Update()
@@ -90,10 +106,34 @@ public class RaundManager : MonoBehaviour
     {
         //勝利表示を数秒間見せる
         yield return new WaitForSeconds(raundOverTime);
+
+        if (testEffects.CountP1 >= maxCount || testEffects.CountP2 >= maxCount)
+        {
+            if(testEffects.CountP1 > testEffects.CountP2)
+            {
+                winnerData.WinnerNumber = 0;
+            }
+            else
+            {
+                winnerData.WinnerNumber = 1;
+            }
+
+            if (!isEnd)
+            {
+                gameSceneManager.LoadResaultScene();
+                isEnd = true;
+            }
+        }
+
         //フェードアウト開始
-        StartCoroutine(fadeManager.FadeOut());
+        if (!isEnd)
+        {
+            StartCoroutine(fadeManager.FadeOut());
+        }
+
         //フェードが終わるまで待つ
         yield return new WaitUntil(() => !fadeManager.GetIsFading());
+
         //画面が完全に黒くなった
         Restart();
         //次のラウンドを表示
