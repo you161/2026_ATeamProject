@@ -14,6 +14,7 @@ public class RaundManager : MonoBehaviour
     [Header("フェード")]
     [SerializeField] private FadeManager fadeManager = null;
     [SerializeField] private PlayerManager playerManager = null;
+    [SerializeField] private CountDown countDown = null;
 
     private bool isRoundOver = false;
 
@@ -106,8 +107,9 @@ public class RaundManager : MonoBehaviour
             raundOverUI[i].SetActive(false);
         }
 
-        // ここでプレイヤーの位置をリセット
+        //再スタート
         playerManager.ResetPlayerPositions();
+        countDown.StartCountDown();
         isRoundOver = false;
     }
 }
