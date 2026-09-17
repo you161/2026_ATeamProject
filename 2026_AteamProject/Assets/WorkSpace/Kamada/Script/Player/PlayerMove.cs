@@ -6,7 +6,6 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private PlayerData playerData = null;
     [SerializeField] private PlayerJump playerJump = null;
     [SerializeField] private PlayerControllerInput playerControllerInput = null;
-    [SerializeField] private GameObject shadowObject = null;
     [SerializeField] private PlayerKnockback playerKnockback = null;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -58,6 +57,16 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (countDown.IsPlayCount &&!countDown.IsGo)
+        {
+            return;
+        }
+
+        if (playerKnockback.IsKnockback)
+        {
+            return;
+        }
+
         Move();
         Rotate();
     }
