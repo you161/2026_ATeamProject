@@ -10,6 +10,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private float fallingSize = 1.0f;
     [SerializeField] private float fallingTime = 0.0f;
     [SerializeField] private float fallingSpeed = 0.0f;
+    [SerializeField] private float maxGround = -15.0f;
 
     [Header("リセット設定")]
     [SerializeField] private float vanishSpeed = 0.0f;
@@ -19,7 +20,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private Vector3 startPosition;
     private Material baseMaterial;
-    private float countTime = 0.0f;
+    private float fallingTimer = 0.0f;
+    private float resetTimer = 0.0f;
     private bool isFalling = false;
     private bool isReset = false;
 
@@ -35,64 +37,61 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             FallingFloor();
         }
-        ResetFloor();
 
+        if (isReset && isLoop)
+        {
+            ResetFloor();
+        }
     }
 
     private void FallingFloor()
     {
-        if (!isReset)
+        fallingTimer += Time.deltaTime;
+
+        if (fallingTimer > fallingTime)
         {
-            countTime += Time.deltaTime;
+            Vector3 currentPosition = transform.position;
+            currentPosition.y += fallingSpeed * Time.deltaTime;
+            transform.position = currentPosition;
+            Color color = myRenderer.material.color;
+            color.a += vanishSpeed * Time.deltaTime;
+            color.a = Mathf.Max(0.0f, color.a);
+            myRenderer.material.color = color;
 
-            if (countTime > fallingTime)
+            isReset = true;
+
+            if (currentPosition.y < maxGround)
             {
-                Vector3 currentPosition = transform.position;
-                currentPosition.y += fallingSpeed * Time.deltaTime;
-                transform.position = currentPosition;
-                Color color = myRenderer.material.color;
-                color.a += vanishSpeed * Time.deltaTime;
-                color.a = Mathf.Max(0.0f, color.a);
-                myRenderer.material.color = color;
-
-                if (currentPosition.y < -10.0f)
-                {
-                    transform.GetChild(0).gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                    isReset = true;
-                    countTime = 0.0f;
-                }
+                fallingTimer = 0.0f;
+                isFalling = false;
             }
         }
-
     }
 
     private void ResetFloor()
     {
-        if (isReset && isLoop)
+        resetTimer += Time.deltaTime;
+
+        if (transform.position == startPosition)
         {
-            countTime += Time.deltaTime;
+            Color color = myRenderer.material.color;
+            color.a = resetTimer % 0.2f < 0.1 ? 0.0f : 1.0f;
 
-            if (transform.position == startPosition)
+            if (resetTimer > flashTime)
             {
-                Color color = myRenderer.material.color;
-                color.a = countTime % 0.2f < 0.1 ? 0.0f : 1.0f;
-
-                if (countTime > flashTime)
-                {
-                    color.a = 1.0f;
-                    isFalling = false;
-                    isReset = false;
-                    countTime = 0.0f;
-                }
-
-                myRenderer.material.color = color;
+                color.a = 1.0f;
+                isReset = false;
+                resetTimer = 0.0f;
             }
-            else if (countTime > resetTime)
-            {
-                transform.position = startPosition;
-                myRenderer.material = baseMaterial;
-                countTime = 0.0f;
-            }
+
+            myRenderer.material.color = color;
+        }
+        else if (resetTimer > resetTime)
+        {
+            transform.GetChild(0).gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            transform.position = startPosition;
+            myRenderer.material = baseMaterial;
+            resetTimer = 0.0f;
         }
     }
 
@@ -119,7 +118,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
             color.a = 0.0f;
             myRenderer.material.color = color;
             transform.position = new Vector3(transform.position.x, -10.0f, transform.position.z);
-            countTime = 0.0f;
             isReset = true;
         }
     }

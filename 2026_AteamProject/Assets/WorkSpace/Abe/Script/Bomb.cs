@@ -1,9 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class Bomb : MonoBehaviour
 {
+    [Header("SE")]
+    [SerializeField] private AudioSource myAudioSource = null;
+    [SerializeField] private AudioClip ac_bombPick = null;
+    [SerializeField] private AudioClip ac_bomb_1 = null;
+
     [Header("投擲設定")]
     [SerializeField] private float throwDistance = 10.0f;
     [SerializeField] private float gravityPower = 5.0f;
@@ -18,6 +24,8 @@ public class Bomb : MonoBehaviour
     [Header("クールダウン設定")]
     [SerializeField] private Image gaugeImage = null;
     [SerializeField] private float cooldownTime = 0.0f;
+
+    [SerializeField] private PlayerKnockback playerKnokback = null;
 
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
@@ -88,8 +96,9 @@ public class Bomb : MonoBehaviour
                 if (!playerJump.IsFrontJumping && playerControllerInput.EastButtonPressed)
                 {
                     CreateBomb();
-                    countTime = 0.0f;
                     isReady = true;
+                    if (myAudioSource != null) myAudioSource.PlayOneShot(ac_bombPick);
+                    countTime = 0.0f;
                 }
             }
         }
@@ -102,6 +111,7 @@ public class Bomb : MonoBehaviour
             {
                 StartThrow();
                 isCoolDown = true;
+
                 Color color = gaugeImage.color;
                 color.r = 0.75f;
                 gaugeImage.color = color;
@@ -144,6 +154,8 @@ public class Bomb : MonoBehaviour
             if (countTime > tTime)
             {
                 Instantiate(bombEffect, currentBomb.transform.position, Quaternion.identity);
+
+                if (myAudioSource != null) myAudioSource.PlayOneShot(ac_bomb_1);
 
                 Destroy(currentBomb.gameObject);
                 currentBomb = null;
@@ -223,6 +235,17 @@ public class Bomb : MonoBehaviour
             isReady = false;
             isExplosion = true;
             countTime = 0.0f;
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject player in players)
+            {
+                Debug.Log(player);
+                if (player == gameObject)
+                {
+                    continue;
+                }
+                PlayerKnockback playerKnokuBack = player.GetComponent<PlayerKnockback>();
+                playerKnokuBack.PlayKnockback(currentBomb.transform.position);
+            }
             currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
             omenObject.transform.GetChild(0).gameObject.SetActive(false);
         }
@@ -252,6 +275,7 @@ public class Bomb : MonoBehaviour
             gaugeImage.fillAmount = 0.0f;
             countTime = 0.0f;
             lineRenderer.positionCount = 0;
+            playerKnokback.PlayKnockback(currentBomb.transform.position);
             currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
             omenObject.SetActive(false);
             currentBombCapsule.SetActive(true);
