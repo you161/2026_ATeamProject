@@ -156,6 +156,7 @@ MonoBehaviour:
   raundOverTime: 3
   fadeManager: {fileID: 997071378}
   playerManager: {fileID: 718977615}
+  countDown: {fileID: 456585475}
 --- !u!4 &157632508
 Transform:
   m_ObjectHideFlags: 0
@@ -340,10 +341,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3759048767691545111, guid: e00392d986e18a2448229738ae6b3bca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1451542029}
+      addedObject: {fileID: 2023619136}
     - targetCorrespondingSourceObject: {fileID: 3759048767691545111, guid: e00392d986e18a2448229738ae6b3bca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2023619136}
+      addedObject: {fileID: 1451542029}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2422163412320268994, guid: e00392d986e18a2448229738ae6b3bca, type: 3}
       insertIndex: -1
@@ -474,7 +475,7 @@ Transform:
   m_GameObject: {fileID: 440784285}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1.5, z: 0}
+  m_LocalPosition: {x: -5, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -632,7 +633,7 @@ Transform:
   m_GameObject: {fileID: 445098141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 5, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
