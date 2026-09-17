@@ -211,6 +211,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &713818311
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 672700049092364621, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: fadeImage
+      value: 
+      objectReference: {fileID: 1515506280}
+    - target: {fileID: 672700049092364621, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: fadeObject
+      value: 
+      objectReference: {fileID: 1515506278}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.57644
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11.90424
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 41.09974
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610780210517335768, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7198721639834047729, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
+      propertyPath: m_Name
+      value: GameSceneManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0d47c98fec05f846b56cfa3a98be752, type: 3}
 --- !u!1 &746151281
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +597,7 @@ GameObject:
   - component: {fileID: 1515506281}
   - component: {fileID: 1515506280}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FadeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -555,7 +620,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1515506280
 MonoBehaviour:
@@ -570,7 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -603,3 +668,4 @@ SceneRoots:
   - {fileID: 974760251}
   - {fileID: 1415723224}
   - {fileID: 746151284}
+  - {fileID: 713818311}
