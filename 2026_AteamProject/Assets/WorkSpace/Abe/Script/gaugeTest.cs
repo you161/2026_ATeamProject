@@ -10,13 +10,13 @@ public class gaugeTest : MonoBehaviour
 
     void Start()
     {
-        
+        gaugeImage.fillAmount = 0.0f;
     }
 
     void Update()
     {
         countTime += Time.deltaTime;
-        gaugeImage.fillAmount -= 1.0f / coolDownTime * Time.deltaTime;
+        gaugeImage.fillAmount += 1.0f / coolDownTime * Time.deltaTime;
 
         if (countTime >= coolDownTime) countTime = coolDownTime;
     }

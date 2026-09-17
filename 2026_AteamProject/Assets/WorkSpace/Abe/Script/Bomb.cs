@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Bomb : MonoBehaviour
@@ -14,6 +14,10 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float explosionTime = 5.0f;
     [SerializeField] private float explosionSize = 2.0f;
     [SerializeField] private float tTime = 0.01f;
+
+    [Header("クールダウン設定")]
+    [SerializeField] private Image bombImage = null;
+    [SerializeField] private float cooldownTime = 0.0f;
 
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
@@ -36,6 +40,7 @@ public class Bomb : MonoBehaviour
     private bool isThrow = false;
     private bool isReady = false;
     private bool isExplosion = false;
+    private bool isCoolDown = false;
     private bool isBlast = false;
 
     public bool IsReady { get => isReady; }
@@ -59,7 +64,9 @@ public class Bomb : MonoBehaviour
     }
     private void Update()
     {
-        if (!isReady)
+        bombImage.transform.position = transform.position;
+
+        if (!isReady && !isCoolDown)
         {
             //Space1回目
             if (playerControllerInput.EastButtonPressed)
@@ -77,6 +84,8 @@ public class Bomb : MonoBehaviour
             if (!isThrow && playerControllerInput.EastButtonPressed)
             {
                 StartThrow();
+                isCoolDown = true;
+                bombImage.fillAmount = 0.0f;
             }
         }
 
@@ -91,6 +100,17 @@ public class Bomb : MonoBehaviour
         if (isThrow && currentBomb != null)
         {
             ThrowBomb();
+        }
+
+        // クールダウン処理
+        if (isCoolDown)
+        {
+            bombImage.fillAmount += 1.0f / cooldownTime * Time.deltaTime;
+
+            if (bombImage.fillAmount >= 1.0f)
+            {
+                isCoolDown = false;
+            }
         }
 
         //爆発する処理
@@ -202,6 +222,7 @@ public class Bomb : MonoBehaviour
         {
             isReady = false;
             isExplosion = true;
+            isCoolDown = true;
             countTime = 0.0f;
             lineRenderer.positionCount = 0;
             currentBomb.transform.GetChild(0).gameObject.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
