@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: afe48377c7fc273429339aad6172d8da
+guid: 5d92b9255640b974b86e63392c7afde0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4499676377552236168
-    second: hp_gauge_0
+      213: -700528854501819571
+    second: bomGage_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hp_gauge_0
+      name: bomGage_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 312
-        height: 313
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88ea73833df027e30800000000000000
-      internalID: 4499676377552236168
+      spriteID: d4bf188e7b83746f0800000000000000
+      internalID: -700528854501819571
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hp_gauge_0: 4499676377552236168
+      bomGage_0: -700528854501819571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
