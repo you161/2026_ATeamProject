@@ -7,7 +7,7 @@
             "id": "2e68d206-9a86-49aa-8d8b-933fd0066478",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "MoveGamePad",
                     "type": "Value",
                     "id": "bcd8622d-dfa2-43e5-aa7d-993063b0d235",
                     "expectedControlType": "Vector2",
@@ -17,7 +17,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "pushEastButton",
+                    "name": "BombGamePad",
                     "type": "Button",
                     "id": "de31e1d0-44cd-4b79-86f1-f5057adad0b1",
                     "expectedControlType": "",
@@ -27,9 +27,69 @@
                     "priority": 0
                 },
                 {
-                    "name": "PushSouthButton",
+                    "name": "JumpGamePad",
                     "type": "Button",
                     "id": "b4dfd727-fdaa-490a-8f13-d16968fd6a07",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "MoveWASD",
+                    "type": "Value",
+                    "id": "7c06b26f-9b2b-4853-a034-7acf26883270",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "BombKeyboard_0",
+                    "type": "Button",
+                    "id": "27d2a2ba-f3ba-409a-920a-ecbb87c84ae5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "JumpKeyboard_0",
+                    "type": "Button",
+                    "id": "4e221a24-cb9e-43ce-b82c-e72bcfedf26f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "MoveArrow",
+                    "type": "Value",
+                    "id": "1455a220-a51c-4f74-a129-e6589d3d4936",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "BombKeyboard_1",
+                    "type": "Button",
+                    "id": "f81404d5-7a75-44d1-8682-618c003ec331",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "JumpKeyboard_1",
+                    "type": "Button",
+                    "id": "ebcc7c71-fcc1-40fb-b2f5-951ce1f2c7a2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
@@ -45,9 +105,119 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Move",
+                    "action": "MoveGamePad",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "d5ba85c5-4265-406f-a1dd-58522d576c98",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveWASD",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "cc76f793-ea7f-459e-9d5f-b4ea297df707",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveWASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "e3b78037-d838-4497-9c53-c8f695a5909a",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveWASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "9c8d48fd-0c61-405b-8a3f-3ea52a07707f",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveWASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "4c93ca19-ced9-413b-b3ee-06cfd01e48e8",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveWASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "3c698853-26c8-48f7-92e9-8bfc38a53c26",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveArrow",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "fa785072-3d0e-4c74-8f9a-5b24e7973199",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveArrow",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "0258fb29-5c3b-45fe-a3a6-9b5592c206fc",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveArrow",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "b76a74b3-3fc8-4e0f-8fa0-1ae8ea3e22dd",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveArrow",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "ac1ccc78-16aa-4465-ba26-c916c1aa6b39",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveArrow",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -56,7 +226,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "pushEastButton",
+                    "action": "BombGamePad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23be34b2-77b1-4ed9-9df3-18360fc4e4d8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "BombKeyboard_0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b863e9cb-dd85-45ae-a720-c68a4cf208bf",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "BombKeyboard_1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -67,7 +259,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "PushSouthButton",
+                    "action": "JumpGamePad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00ac3753-1c61-4a3b-8309-ea176e46c1df",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "JumpKeyboard_0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b778dfd-aaaf-4b65-9f02-e8a3d2676583",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "JumpKeyboard_1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
