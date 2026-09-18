@@ -10,20 +10,28 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 currentVelocity = Vector3.zero;
+
     private bool isPressed = false;
     private bool isMove = false;
+
     public bool IsMove { get => isMove; }
+
     private CountDown countDown;
 
     private void Start()
     {
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+
         moveDirection = Vector3.zero;
+        currentVelocity = Vector3.zero;
+
         isPressed = false;
         isMove = false;
 
+        //ゲームオブジェクトからカウントダウン処理を探す
         GameObject countDownObj = GameObject.Find("CountDownManager");
+
         if (countDownObj != null)
         {
             countDown = countDownObj.GetComponent<CountDown>();
@@ -37,18 +45,14 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (countDown.IsPlayCount && !countDown.IsGo)
+        if (countDown != null && countDown.IsPlayCount && !countDown.IsGo)
         {
             currentVelocity = Vector3.zero;
             moveDirection = Vector3.zero;
+
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
-            return;
-        }
-
-        if (playerKnockback.IsKnockback)
-        {
             return;
         }
 
@@ -57,12 +61,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (countDown.IsPlayCount &&!countDown.IsGo)
-        {
-            return;
-        }
-
-        if (playerKnockback.IsKnockback)
+        if (countDown != null && countDown.IsPlayCount && !countDown.IsGo)
         {
             return;
         }
@@ -73,7 +72,6 @@ public class PlayerMove : MonoBehaviour
 
     private void MoveInput()
     {
-        //毎フレームリセット
         moveDirection = Vector3.zero;
         isPressed = false;
 
@@ -83,7 +81,7 @@ public class PlayerMove : MonoBehaviour
         if (input.sqrMagnitude > 0.01f)
         {
             isPressed = true;
-            moveDirection = new Vector3(input.x,0,input.y);
+            moveDirection = new Vector3(input.x,0.0f,input.y);
             moveDirection.Normalize();
         }
     }
@@ -92,6 +90,12 @@ public class PlayerMove : MonoBehaviour
     {
         float currentAcceleration = playerData.Acceleration;
 
+        if (playerKnockback.IsKnockback)
+        {
+            MoveKnockback();
+            return;
+        }
+
         if (isPressed)
         {
             Vector3 targetVelocity = moveDirection * playerData.MaxMoveSpeed;
@@ -99,7 +103,8 @@ public class PlayerMove : MonoBehaviour
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 targetVelocity,
-                currentAcceleration * Time.fixedDeltaTime
+                currentAcceleration *
+                Time.fixedDeltaTime
             );
 
             isMove = true;
@@ -109,7 +114,8 @@ public class PlayerMove : MonoBehaviour
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 Vector3.zero,
-                playerData.Deceleration * Time.fixedDeltaTime
+                playerData.Deceleration *
+                Time.fixedDeltaTime
             );
 
             isMove = false;
@@ -118,11 +124,10 @@ public class PlayerMove : MonoBehaviour
         if (playerJump.IsFrontJumping)
         {
             Vector3 velocity = playerJump.FrontJumpVelocity;
-            //前ジャンプ中は操作量を10%にする
-            Vector3 controlVelocity = currentVelocity * 0.1f;
 
-            velocity += new Vector3(controlVelocity.x,0f,controlVelocity.z);
-
+            //前ジャンプ中は操作量変更
+            Vector3 controlVelocity = currentVelocity * playerData.frontJumpingMoveRate;
+            velocity += new Vector3(controlVelocity.x,0.0f,controlVelocity.z);
             rb.linearVelocity = new Vector3(velocity.x,rb.linearVelocity.y,velocity.z);
 
             return;
@@ -135,14 +140,46 @@ public class PlayerMove : MonoBehaviour
         );
     }
 
+    private void MoveKnockback()
+    {
+        Vector3 targetVelocity = Vector3.zero;
+
+        if (isPressed)
+        {
+            targetVelocity = playerData.knockbackMoveRate * playerData.MaxMoveSpeed * moveDirection;
+        }
+
+        currentVelocity = Vector3.MoveTowards(
+            currentVelocity,
+            targetVelocity,
+            playerData.Acceleration *
+            Time.fixedDeltaTime
+        );
+
+        Vector3 velocity = rb.linearVelocity;
+
+        velocity.x = currentVelocity.x;
+        velocity.z = currentVelocity.z;
+
+        rb.linearVelocity = velocity;
+
+        isMove = isPressed;
+    }
+
     private void Rotate()
     {
         float rotationSpeed = playerData.RotationSpeed;
 
-        //前ジャンプ中は回転速度を1/10にする
+        //前ジャンプ中回転速度を変更
         if (playerJump.IsFrontJumping)
         {
-            rotationSpeed *= 0.1f;
+            rotationSpeed *= playerData.frontJumpingMoveRate;
+        }
+
+        //ノックバック中はさらに回転速度を変更
+        if (playerKnockback.IsKnockback)
+        {
+            rotationSpeed *= playerData.knockbackMoveRate;
         }
 
         if (!isPressed)
@@ -155,15 +192,15 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        //移動方向に応じた目標回転
+        //移動方向に向ける
         Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
-        //現在の回転と目標の回転の角度
-        float angle = Quaternion.Angle(rb.rotation, targetRotation);
+        //現在の回転と目標回転の角度
+        float angle = Quaternion.Angle(rb.rotation,targetRotation);
 
+        //大きく方向転換する場合回転速度を倍に
         if (angle >= 150.0f)
         {
-            //大きく方向転換する場合は回転速度を倍にする
             rotationSpeed *= 2.0f;
         }
 
@@ -171,7 +208,8 @@ public class PlayerMove : MonoBehaviour
         rb.rotation = Quaternion.RotateTowards(
             rb.rotation,
             targetRotation,
-            rotationSpeed * Time.fixedDeltaTime
+            rotationSpeed *
+            Time.fixedDeltaTime
         );
     }
 }
