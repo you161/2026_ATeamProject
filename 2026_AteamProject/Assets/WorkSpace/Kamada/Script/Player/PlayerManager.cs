@@ -48,8 +48,7 @@ public class PlayerManager : MonoBehaviour
         {
             playerInput = PlayerInput.Instantiate(
                 playerPrefab,
-                playerIndex: playerIndex,
-                controlScheme: "Keyboard&Mouse"
+                playerIndex: playerIndex
             );
         }
 
@@ -91,6 +90,11 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        if (playerInput.TryGetComponent<PlayerVisual>(out var playerVisual))
+        {
+            playerVisual.SetPlayerNumber(playerIndex);
+        }
+
         playerInput.transform.position = spawnPoints[playerIndex].position;
         playerInput.transform.rotation = spawnPoints[playerIndex].rotation;
     }
@@ -105,8 +109,29 @@ public class PlayerManager : MonoBehaviour
                 continue;
             }
 
-            players[i].transform.position = spawnPoints[i].position;
-            players[i].transform.rotation = spawnPoints[i].rotation;
+            Rigidbody rb = players[i].GetComponent<Rigidbody>();
+            PlayerKnockback knockback = players[i].GetComponent<PlayerKnockback>();
+
+            if (knockback != null)
+            {
+                knockback.ResetKnockback();
+            }
+
+            if (rb != null)
+            {
+                //速度をリセット
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+
+                //Rigidbodyの位置,回転をリセット
+                rb.position = spawnPoints[i].position;
+                rb.rotation = spawnPoints[i].rotation;
+            }
+            else
+            {
+                players[i].transform.position = spawnPoints[i].position;
+                players[i].transform.rotation = spawnPoints[i].rotation;
+            }
         }
     }
 }
