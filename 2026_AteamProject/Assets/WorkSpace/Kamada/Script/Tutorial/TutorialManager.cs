@@ -19,8 +19,6 @@ public class TutorialManager : MonoBehaviour
         hasController = false;
 
         hasController = Gamepad.all.Count > 0;
-
-        Debug.Log(hasController);
     }
 
     private void Update()
