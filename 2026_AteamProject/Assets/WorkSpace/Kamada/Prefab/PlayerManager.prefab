@@ -778,6 +778,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2011204257087415709}
     m_Modifications:
+    - target: {fileID: 127058257855200017, guid: b4179eb1685de0743be14ca36b64512c, type: 3}
+      propertyPath: bombPickupSEVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 127058257855200017, guid: b4179eb1685de0743be14ca36b64512c, type: 3}
+      propertyPath: bombExplodeSEVolume
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7250218447932478880, guid: b4179eb1685de0743be14ca36b64512c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.15563
@@ -867,10 +875,22 @@ PrefabInstance:
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 4951144133282772384}
+    - target: {fileID: 555161603370548197, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: throwDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1497822657333633818, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2023700401592558485, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: player1Material
+      value: 
+      objectReference: {fileID: 2100000, guid: dd8b6e2cefcf7fe4283fb4348dbc42a1, type: 2}
+    - target: {fileID: 2023700401592558485, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
+      propertyPath: player2Material
+      value: 
+      objectReference: {fileID: 2100000, guid: cd79a98ba076e4843ac4e97160e03394, type: 2}
     - target: {fileID: 3134479551835128863, guid: c00ec358b89fabc45a12d2899191cf63, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
