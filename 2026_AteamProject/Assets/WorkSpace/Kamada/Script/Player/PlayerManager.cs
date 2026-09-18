@@ -17,11 +17,10 @@ public class PlayerManager : MonoBehaviour
 
     private void CreatePlayers()
     {
-        //接続されているゲームパッドの数を取得
+        //接続されているゲームパッドの数
         int gamepadCount = Gamepad.all.Count;
-
-        //最大プレイヤー数とスポーンポイントの数を考慮して、生成するプレイヤー数を決定
-        int playerCount = Mathf.Min(maxPlayerCount, spawnPoints.Length);
+        //最大プレイヤー数とスポーンポイント数を考慮
+        int playerCount = Mathf.Min(maxPlayerCount,spawnPoints.Length);
 
         for (int i = 0; i < playerCount; i++)
         {
@@ -29,11 +28,10 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void CreatePlayer(int playerIndex, int gamepadCount)
+    private void CreatePlayer(int playerIndex,int gamepadCount)
     {
         PlayerInput playerInput;
 
-        //ゲームパッドがある場合
         if (playerIndex < gamepadCount)
         {
             Gamepad gamepad = Gamepad.all[playerIndex];
@@ -41,20 +39,23 @@ public class PlayerManager : MonoBehaviour
             playerInput = PlayerInput.Instantiate(
                 playerPrefab,
                 playerIndex: playerIndex,
-                controlScheme: null,
+                controlScheme: "Gamepad",
                 splitScreenIndex: -1,
                 pairWithDevice: gamepad
             );
         }
-        //ゲームパッドがない場合
         else
         {
-            playerInput = PlayerInput.Instantiate(playerPrefab,playerIndex: playerIndex);
+            playerInput = PlayerInput.Instantiate(
+                playerPrefab,
+                playerIndex: playerIndex,
+                controlScheme: "Keyboard&Mouse"
+            );
         }
 
         //プレイヤーを保存
         players[playerIndex] = playerInput;
-        //操作方法を決定
+
         PlayerControllerInput controllerInput = playerInput.GetComponent<PlayerControllerInput>();
 
         if (playerIndex == 0)
@@ -90,7 +91,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        //スポーン位置
         playerInput.transform.position = spawnPoints[playerIndex].position;
         playerInput.transform.rotation = spawnPoints[playerIndex].rotation;
     }
