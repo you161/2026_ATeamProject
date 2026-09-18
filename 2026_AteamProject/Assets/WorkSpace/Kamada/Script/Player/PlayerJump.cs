@@ -7,7 +7,6 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private PlayerData playerData = null;
     [SerializeField] private Transform player = null;
     [SerializeField] private PlayerControllerInput playerControllerInput = null;
-    [SerializeField] private PlayerShadowTracking playerShadowTracking = null;
     [SerializeField] private Bomb bomb = null;
 
     private bool isGrounded = true;
