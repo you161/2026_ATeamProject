@@ -2,22 +2,26 @@ using UnityEngine;
 
 public class BombCollider : MonoBehaviour
 {
+    private Bomb bombScript = null;
+
     private bool isFlag = false;
     public bool IsFlag { get => isFlag; }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && bombScript.IsThrow)
+        {
+            isFlag = true;
+        }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             isFlag = true;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Getbomb(Bomb script)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isFlag = true;
-        }
+        bombScript = script;
     }
 }
