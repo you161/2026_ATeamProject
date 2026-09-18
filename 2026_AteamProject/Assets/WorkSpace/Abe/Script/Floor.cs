@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    [SerializeField] private RaundManager raundManager = null;
-
     [Header("コライダー")]
     [SerializeField] private MeshCollider myCollider = null;
 
@@ -24,8 +22,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private float flashTime = 0.0f;
     [SerializeField] private bool isLoop = false;
 
-    private Vector3 startPosition;
-    private Material baseMaterial;
+    private RaundManager raundManager = null;
+    private Vector3 startPosition = Vector3.zero;
+    private Material baseMaterial = null;
     private float fallingTimer = 0.0f;
     private float resetTimer = 0.0f;
     private bool isFalling = false;
@@ -33,6 +32,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Start()
     {
+        raundManager = GameObject.Find("RaundManager").GetComponent<RaundManager>();
         startPosition = transform.position;
         baseMaterial = myRenderer.material;
     }
@@ -51,7 +51,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             ResetFloor();
         }
 
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        if (raundManager.IsRoundOver)
         {
             isFalling = false;
             isReset = false;
