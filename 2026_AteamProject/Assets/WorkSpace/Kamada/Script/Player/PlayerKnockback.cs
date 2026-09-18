@@ -85,4 +85,10 @@ public class PlayerKnockback : MonoBehaviour
             playerRigidbody.linearVelocity = Vector3.zero;
         }
     }
+    public void ResetKnockback()
+    {
+        isKnockback = false;
+        knockbackDirection = Vector3.zero;
+        currentTime = 0.0f;
+    }
 }
