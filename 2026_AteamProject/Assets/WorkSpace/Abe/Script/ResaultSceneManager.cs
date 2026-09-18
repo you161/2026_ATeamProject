@@ -40,12 +40,13 @@ public class ResaultSceneManager : MonoBehaviour
                 isActive = true;
             }
 
-            if ((hasController && Gamepad.current.bButton.wasPressedThisFrame) || 
+            if ((hasController && Gamepad.current.aButton.wasPressedThisFrame) || 
                 Keyboard.current.shiftKey.wasPressedThisFrame)
             {
                 gameSceneManeger.LoadMainScene();
             }
-            if ((hasController && Gamepad.current.aButton.wasPressedThisFrame) || 
+
+            if ((hasController && Gamepad.current.bButton.wasPressedThisFrame) || 
                 Keyboard.current.ctrlKey.wasPressedThisFrame)
             {
                 gameSceneManeger.LoadTitleScene();
