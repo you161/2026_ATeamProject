@@ -7,6 +7,7 @@ public class CountDown : MonoBehaviour
     [SerializeField] private Image currentImage = null;
     [SerializeField] private Sprite[] countDownSprite = null;
     [SerializeField] private int count = 3;
+    [SerializeField] private SEManager seManager = null;
 
     private float currentTime = 0;
     private int currentCount = 0;
@@ -85,5 +86,7 @@ public class CountDown : MonoBehaviour
 
         //最初に3を表示
         currentImage.sprite = countDownSprite[0];
+
+        seManager.GameStartSE();
     }
 }

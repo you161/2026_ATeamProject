@@ -8,6 +8,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private Transform player = null;
     [SerializeField] private PlayerControllerInput playerControllerInput = null;
     [SerializeField] private Bomb bomb = null;
+    [SerializeField] private SEManager seManager = null;
 
     private bool isGrounded = true;
     private bool isJumping = false;
@@ -93,6 +94,8 @@ public class PlayerJump : MonoBehaviour
             velocity.y = playerData.JumpPower;
             rb.linearVelocity = velocity;
 
+            seManager.PlayerJumpSE();
+
             return;
         }
 
@@ -146,6 +149,8 @@ public class PlayerJump : MonoBehaviour
         rb.linearVelocity = velocity;
 
         frontJumpVelocity = forward * playerData.FrontJumpPower;
+
+        seManager.PlayerDiveSE();
     }
 
     private void FrontJumping()
