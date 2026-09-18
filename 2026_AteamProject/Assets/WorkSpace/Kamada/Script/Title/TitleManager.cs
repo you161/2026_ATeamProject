@@ -7,6 +7,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private GameObject controllerUI = null;
     [SerializeField] private GameObject keyboardUI = null;
     [SerializeField] private GameSceneManager gameSceneManager = null;
+    [SerializeField] private SEManager seManager = null;
 
     private bool hasController = false;
     private bool isQuitting = false;
@@ -17,47 +18,35 @@ public class TitleManager : MonoBehaviour
 
         hasController = Gamepad.all.Count > 0;
 
-        Debug.Log(hasController);
-
-        //if (hasController)
-        //{
-        //    controllerUI.SetActive(true);
-        //    keyboardUI.SetActive(false);
-        //}
-        //else
-        //{
-        //    controllerUI.SetActive(true);
-        //    keyboardUI.SetActive(false);
-        //}
+        if (hasController)
+        {
+            controllerUI.SetActive(true);
+            keyboardUI.SetActive(false);
+        }
+        else
+        {
+            controllerUI.SetActive(false);
+            keyboardUI.SetActive(true);
+        }
     }
 
     private void Update()
     {
-        //if (hasController)
-        //{
-        //    if (Gamepad.current.aButton.wasPressedThisFrame)
-        //    {
-        //        gameSceneManager.LoadMainScene();
-        //    }
+        if (hasController && Gamepad.current.aButton.wasPressedThisFrame
+            || Keyboard.current.leftShiftKey.wasPressedThisFrame)
+        {
+            gameSceneManager.LoadTutorialScene();
+            seManager.GameStartButtonSE();
+        }
 
-        //    if (!isQuitting && Gamepad.current.bButton.wasPressedThisFrame)
-        //    {
-        //        isQuitting = true;
-        //        Application.Quit();
-        //    }
-        //}
-        //else
-        //{
-        //    if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
-        //    {
-        //        gameSceneManager.LoadMainScene();
-        //    }
-
-        //    if (!isQuitting && Keyboard.current.escapeKey.wasPressedThisFrame)
-        //    {
-        //        isQuitting = true;
-        //        Application.Quit();
-        //    }
-        //}
+        if (!isQuitting)
+        {
+            if(hasController && Gamepad.current.bButton.wasPressedThisFrame
+                || Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                isQuitting = true;
+                Application.Quit();
+            }
+        }
     }
 }
