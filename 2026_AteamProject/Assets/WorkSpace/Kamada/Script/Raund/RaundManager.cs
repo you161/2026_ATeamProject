@@ -149,8 +149,8 @@ public class RaundManager : MonoBehaviour
         }
 
         //再スタート
-        playerManager.ResetPlayerPositions();
         countDown.StartCountDown();
+        playerManager.ResetPlayerPositions();
         isRoundOver = false;
     }
 }
