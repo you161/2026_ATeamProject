@@ -50,7 +50,6 @@ public class Bomb : MonoBehaviour
     private bool isReady = false;
     private bool isExplosion = false;
     private bool isCoolDown = false;
-    private bool isBlast = false;
 
     public bool IsReady { get => isReady; }
     public bool IsThrow { get => isThrow; }
@@ -58,6 +57,9 @@ public class Bomb : MonoBehaviour
 
     private float throwTime = 0.0f;
     private float countTime = 0.0f;
+
+    private CountDown countDown = null;
+    private RaundManager raundManager = null;
 
     private GameObject currentBomb = null;
     private BombCollider currentBombScript = null;
@@ -74,6 +76,8 @@ public class Bomb : MonoBehaviour
 
     private void Start()
     {
+        countDown = GameObject.Find("CountDownManager").GetComponent<CountDown>();
+        raundManager = GameObject.Find("RaundManager").GetComponent<RaundManager>();
         omenObject.SetActive(false);
         gaugeHeight = gaugeImage.rectTransform.position.y;
     }
@@ -88,8 +92,31 @@ public class Bomb : MonoBehaviour
         }
         gaugeImage.rectTransform.position = gaugePos;
 
+        // ラウンド更新 強制リセット
+        if (raundManager.IsRoundOver)
+        {
+            isReady = false;
+            isThrow = false;
+            isExplosion = false;
+            isCoolDown = false;
+            gaugeImage.fillAmount = 1;
+            lineRenderer.positionCount = 0;
+            omenObject.SetActive(false);
+            if (currentBomb != null)
+            {
+                Destroy(currentBomb.gameObject);
+            }
+            currentBomb = null;
+            return;
+        }
+        if (countDown != null && countDown.IsPlayCount && !countDown.IsGo)
+        {
+            return;
+        }
+
         if (!isReady)
         {
+
             //Space1回目
             if (!isCoolDown)
             {
@@ -105,7 +132,7 @@ public class Bomb : MonoBehaviour
         else
         {
             //爆弾を持っている状態
-            currentBomb.transform.position = transform.position + Vector3.up * 2.0f;
+            currentBomb.transform.position = transform.position + Vector3.up * 0.3f + Vector3.fwd * 0.3f;
             //Space2回目
             if (!isThrow && playerControllerInput.EastButtonPressed)
             {
