@@ -106,9 +106,7 @@ public class RaundManager : MonoBehaviour
             testEfects.WinnerCountP1();
             raundOverUI[0].SetActive(true);
         }
-
         seManager.RoundOverSE();
-
         StartCoroutine(RaundOverCoroutine());
     }
 
@@ -144,10 +142,13 @@ public class RaundManager : MonoBehaviour
         //フェードが終わるまで待つ
         yield return new WaitUntil(() => !fadeManager.GetIsFading());
 
-        //画面が完全に黒くなった
-        Restart();
-        //次のラウンドを表示
-        StartCoroutine(fadeManager.FadeIn());
+        if (!isEnd)
+        {
+            //画面が完全に黒くなった
+            Restart();
+            //次のラウンドを表示
+            StartCoroutine(fadeManager.FadeIn());
+        }
     }
 
     private void Restart()
