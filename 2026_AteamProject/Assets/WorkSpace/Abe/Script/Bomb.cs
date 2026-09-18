@@ -198,6 +198,7 @@ public class Bomb : MonoBehaviour
             bombObject.transform.rotation
         );
         currentBombScript = currentBomb.GetComponent<BombCollider>();
+        currentBombScript.Getbomb(GetComponent<Bomb>());
         currentBombCapsule = currentBomb.transform.GetChild(1).gameObject;
         currentBombCapsule.SetActive(false);
     }

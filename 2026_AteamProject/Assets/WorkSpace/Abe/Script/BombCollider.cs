@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class BombCollider : MonoBehaviour
 {
+    private Bomb bombScript = null;
+
     private bool isFlag = false;
     public bool IsFlag { get => isFlag; }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && bombScript.IsThrow)
         {
             isFlag = true;
         }
@@ -16,5 +18,10 @@ public class BombCollider : MonoBehaviour
         {
             isFlag = true;
         }
+    }
+
+    public void Getbomb(Bomb script)
+    {
+        bombScript = script;
     }
 }
