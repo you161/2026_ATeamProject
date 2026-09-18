@@ -6,8 +6,9 @@ using Unity.VisualScripting;
 
 public class Bomb : MonoBehaviour
 {
-    [Header("SE")]
+    [Header("スクリプト")]
     [SerializeField] private SEManager seManager = null;
+    [SerializeField] private PlayerKnockback playerKnokback = null;
 
     [Header("投擲設定")]
     [SerializeField] private float throwDistance = 10.0f;
@@ -23,8 +24,6 @@ public class Bomb : MonoBehaviour
     [Header("クールダウン設定")]
     [SerializeField] private Image gaugeImage = null;
     [SerializeField] private float cooldownTime = 0.0f;
-
-    [SerializeField] private PlayerKnockback playerKnokback = null;
 
     [Header("爆弾")]
     [SerializeField] private GameObject bombObject = null;
@@ -65,6 +64,9 @@ public class Bomb : MonoBehaviour
     private BombCollider currentBombScript = null;
     private GameObject currentBombCapsule = null;
 
+    private Color baseColor = new Color(1.0f, 0.0f, 0.0f);
+    private Color downColor = new Color(0.5f, 0.0f, 0.0f);
+
     // ゲージの初めの高さ
     private float gaugeHeight = 0.0f;
 
@@ -100,6 +102,7 @@ public class Bomb : MonoBehaviour
             isExplosion = false;
             isCoolDown = false;
             gaugeImage.fillAmount = 1;
+            gaugeImage.color = baseColor;
             lineRenderer.positionCount = 0;
             omenObject.SetActive(false);
             if (currentBomb != null)
@@ -139,9 +142,7 @@ public class Bomb : MonoBehaviour
                 StartThrow();
                 isCoolDown = true;
 
-                Color color = gaugeImage.color;
-                color.r = 0.75f;
-                gaugeImage.color = color;
+                gaugeImage.color = downColor;
                 gaugeImage.fillAmount = 0.0f;
             }
         }
@@ -167,9 +168,7 @@ public class Bomb : MonoBehaviour
             if (gaugeImage.fillAmount >= 1.0f)
             {
                 isCoolDown = false;
-                Color color = gaugeImage.color;
-                color.r = 1.0f;
-                gaugeImage.color = color;
+                gaugeImage.color = baseColor;
             }
         }
 
@@ -297,9 +296,7 @@ public class Bomb : MonoBehaviour
             isReady = false;
             isExplosion = true;
             isCoolDown = true;
-            Color color = gaugeImage.color;
-            color.r = 0.5f;
-            gaugeImage.color = color;
+            gaugeImage.color = downColor;
             gaugeImage.fillAmount = 0.0f;
             countTime = 0.0f;
             lineRenderer.positionCount = 0;
