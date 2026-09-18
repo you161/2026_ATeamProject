@@ -27,6 +27,7 @@ public class RaundManager : MonoBehaviour
     [SerializeField] private WinnerData winnerData = null;
 
     private bool isRoundOver = false;
+    public bool IsRoundOver { get => isRoundOver; }
     private bool isEnd = false;
 
     private void Start()
