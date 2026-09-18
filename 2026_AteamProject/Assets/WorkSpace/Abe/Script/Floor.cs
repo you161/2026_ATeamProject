@@ -86,8 +86,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             if (currentPosition.y < maxGround)
             {
                 myCollider.isTrigger = true;
-                fallingTimer = 0.0f;
-                isFalling = false;
+                //fallingTimer = 0.0f;
+                //isFalling = false;
             }
         }
     }
@@ -106,6 +106,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 myCollider.isTrigger = false;
                 color.a = 1.0f;
                 isReset = false;
+                fallingTimer = 0.0f;
+                isFalling = false;
                 resetTimer = 0.0f;
             }
 
