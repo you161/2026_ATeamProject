@@ -9,20 +9,20 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private GameObject crown;
     [SerializeField] private float crownPos;
     [SerializeField] private float crownSpeed;
-    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Animator[] playerAnimator;
     [SerializeField] private ResaultSceneManager resaultSceneManager = null;
     private Coroutine resultCoroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(resultCoroutine != null)
-        {
-            return;
-        }
-        else
-        {
-            resultCoroutine = StartCoroutine(ResultEffects());
-        }
+        //if(resultCoroutine != null)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    resultCoroutine = StartCoroutine(ResultEffects());
+        //}
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class CameraMover : MonoBehaviour
         //    mainCamera.transform.position += new Vector3(0, moveSpeed, 0) * Time.deltaTime;
         //}
     }
-    private IEnumerator ResultEffects()
+    public IEnumerator ResultEffects(int playerNumber)
     {
         while(mainCamera.transform.position.y > targetPosY)
         {
@@ -49,7 +49,7 @@ public class CameraMover : MonoBehaviour
             //crown.transform.Translate(0, moveSpeed, 0);
             yield return new WaitForSeconds(0.01f);
         }
-        playerAnimator.SetTrigger("pickup");
+        playerAnimator[playerNumber].SetTrigger("pickup");
         while(crown.transform.position.y > crownPos)
         {
             crown.transform.Translate(0, crownSpeed * Time.deltaTime, 0);
