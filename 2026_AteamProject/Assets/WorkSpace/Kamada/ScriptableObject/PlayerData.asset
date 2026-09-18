@@ -15,12 +15,14 @@ MonoBehaviour:
   MaxMoveSpeed: 10
   Acceleration: 10
   Deceleration: 10
+  RotationSpeed: 720
   JumpPower: 15
   GravityPower: 50
   FrontJumpPower: 8
   FrontJumpUpPower: 5
   FrontJumpTime: 0.5
-  RotationSpeed: 720
+  frontJumpingMoveRate: 0.1
   KnockbackDistance: 50
   KnockbackPower: 50
   KnockbackTime: 1
+  knockbackMoveRate: 0.2
