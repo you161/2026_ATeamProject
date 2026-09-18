@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6670962099037249596}
   - component: {fileID: 555161603370548197}
   - component: {fileID: 7291860663614308603}
+  - component: {fileID: 2023700401592558485}
   - component: {fileID: 9063516002051265938}
   - component: {fileID: 7831840702288854901}
   - component: {fileID: 4819171960350234518}
@@ -58,7 +59,6 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 9e75451dd55cdcc4496d830a4626721d, type: 2}
   playerJump: {fileID: 4875498827150167820}
   playerControllerInput: {fileID: 6143234520199603855}
-  shadowObject: {fileID: 0}
   playerKnockback: {fileID: 8293003944076802204}
 --- !u!114 &4875498827150167820
 MonoBehaviour:
@@ -76,7 +76,6 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 9e75451dd55cdcc4496d830a4626721d, type: 2}
   player: {fileID: 2082291484510470816}
   playerControllerInput: {fileID: 6143234520199603855}
-  playerShadowTracking: {fileID: 6670962099037249596}
   bomb: {fileID: 555161603370548197}
 --- !u!114 &6143234520199603855
 MonoBehaviour:
@@ -132,9 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df899ced1c8002344bd41541a7eadd6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
-  myAudioSource: {fileID: 0}
-  ac_bombPick: {fileID: 0}
-  ac_bomb_1: {fileID: 0}
+  seManager: {fileID: 0}
   throwDistance: 5
   gravityPower: 10
   throwUpPower: 3
@@ -172,6 +169,21 @@ MonoBehaviour:
   playerMove: {fileID: 5540215876860959113}
   playerJump: {fileID: 4875498827150167820}
   bomb: {fileID: 555161603370548197}
+--- !u!114 &2023700401592558485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497822657333633818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee42e192db5fe4438022b4a8f3390bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerVisual
+  renderer: {fileID: 6636024710470509062}
+  player1Material: {fileID: 2100000, guid: cd79a98ba076e4843ac4e97160e03394, type: 2}
+  player2Material: {fileID: 2100000, guid: dd8b6e2cefcf7fe4283fb4348dbc42a1, type: 2}
 --- !u!54 &9063516002051265938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -304,6 +316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CH_scene_model
       objectReference: {fileID: 0}
+    - target: {fileID: 5150030272919701325, guid: 2ee4f7fd8576efc47b9db8184e63a900, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -342,5 +358,10 @@ Animator:
 --- !u!4 &2082291484510470816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ee4f7fd8576efc47b9db8184e63a900, type: 3}
+  m_PrefabInstance: {fileID: 1976922387302327627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6636024710470509062 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5150030272919701325, guid: 2ee4f7fd8576efc47b9db8184e63a900, type: 3}
   m_PrefabInstance: {fileID: 1976922387302327627}
   m_PrefabAsset: {fileID: 0}
