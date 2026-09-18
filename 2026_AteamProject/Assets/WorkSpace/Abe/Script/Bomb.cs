@@ -291,6 +291,7 @@ public class Bomb : MonoBehaviour
     private void CountDownExplosion()
     {
         countTime += Time.deltaTime;
+        gaugeImage.fillAmount -= 1.0f / explosionTime * Time.deltaTime;
 
         if (countTime > explosionTime)
         {
