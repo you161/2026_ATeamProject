@@ -23,11 +23,12 @@ public class PlayerJump : MonoBehaviour
 
     public Vector3 FrontJumpVelocity { get => frontJumpVelocity; }
 
-    private CountDown countDown;
+    private CountDown countDown = null;
+    private RaundManager raundManager = null;
 
     private void Start()
     {
-        isGrounded = true;
+        isGrounded = false;
         isJumping = false;
         isFrontJumping = false;
 
@@ -44,15 +45,34 @@ public class PlayerJump : MonoBehaviour
         {
             Debug.Log("countDown is null");
         }
+
+        raundManager = GameObject.Find("RaundManager").GetComponent<RaundManager>();
+
+        if(raundManager == null)
+        {
+            Debug.Log("raundManager is null");
+        }
     }
 
     private void Update()
     {
+        if (raundManager.IsRoundOver)
+        {
+            return;
+        }
+
         //カウントダウン中
         if (countDown.IsPlayCount && !countDown.IsGo)
         {
             rb.useGravity = false;
-            ResetJump();
+            isGrounded = false;
+            isJumping = false;
+            isFrontJumping = false;
+            currentTime = 0f;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            ResetPlayerRotation();
 
             return;
         }
