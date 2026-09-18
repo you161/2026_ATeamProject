@@ -6,9 +6,8 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private Image tutorialImage = null;
     [SerializeField] private Sprite[] tutorialSprites = null;
-    [SerializeField] private GameObject controllerUI = null;
-    [SerializeField] private GameObject keyboardUI = null;
     [SerializeField] private GameSceneManager gameSceneManager = null;
+    [SerializeField] private SEManager seManager = null;
     private int currentPage = 0;
     private bool isSceneChange = false;
     private bool hasController = false;
@@ -22,44 +21,20 @@ public class TutorialManager : MonoBehaviour
         hasController = Gamepad.all.Count > 0;
 
         Debug.Log(hasController);
-
-        if (hasController)
-        {
-            controllerUI.SetActive(true);
-            keyboardUI.SetActive(false);
-        }
-        else
-        {
-            controllerUI.SetActive(true);
-            keyboardUI.SetActive(false);
-        }
     }
 
     private void Update()
     {
-        if (hasController)
+        if (hasController && Gamepad.current.aButton.wasPressedThisFrame 
+            || Keyboard.current.dKey.wasPressedThisFrame)
         {
-            if (Gamepad.current.aButton.wasPressedThisFrame)
-            {
-                NextPage();
-            }
-
-            if (Gamepad.current.bButton.wasPressedThisFrame)
-            {
-                PreviousPage();
-            }
+            NextPage();
         }
-        else
-        {
-            if (Keyboard.current.dKey.wasPressedThisFrame)
-            {
-                NextPage();
-            }
 
-            if (Keyboard.current.aKey.wasPressedThisFrame)
-            {
-                PreviousPage();
-            }
+        if (hasController && Gamepad.current.bButton.wasPressedThisFrame
+            || Keyboard.current.aKey.wasPressedThisFrame)
+        {
+            PreviousPage();
         }
     }
     private void NextPage()
@@ -80,6 +55,7 @@ public class TutorialManager : MonoBehaviour
             {
                 isSceneChange = true;
                 gameSceneManager.LoadMainScene();
+                seManager.NextPageSE();
             }
             return;
         }
@@ -88,6 +64,7 @@ public class TutorialManager : MonoBehaviour
         {
             currentPage = pageNum;
             tutorialImage.sprite = tutorialSprites[currentPage];
+            seManager.NextPageSE();
         }
     }
 }
