@@ -54,6 +54,7 @@ public class Bomb : MonoBehaviour
 
     public bool IsReady { get => isReady; }
     public bool IsThrow { get => isThrow; }
+    public bool IsExplosion { get => isExplosion; }
 
     private float throwTime = 0.0f;
     private float countTime = 0.0f;
