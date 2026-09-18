@@ -96,11 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d79436758d38148b83a221e1b184f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  raundManager: {fileID: 0}
+  myCollider: {fileID: 694561571545879421}
   myRenderer: {fileID: 7309913972523988812}
   changeMaterial: {fileID: 2100000, guid: 294eca77bd9ff34428fd9da830108328, type: 2}
   fallingSize: 1
-  fallingTime: 1.5
-  fallingSpeed: -5
+  fallingTime: 1
+  fallingSpeed: -10
+  maxGround: -15
   vanishSpeed: -1
   resetTime: 10
   flashTime: 0.5
