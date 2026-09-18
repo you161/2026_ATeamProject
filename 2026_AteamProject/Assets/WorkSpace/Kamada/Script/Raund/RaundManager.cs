@@ -25,6 +25,7 @@ public class RaundManager : MonoBehaviour
     [SerializeField] private GameSceneManager gameSceneManager = null;
     [SerializeField] private TestEfects testEffects = null;
     [SerializeField] private WinnerData winnerData = null;
+    [SerializeField] private SEManager seManager = null;
 
     private bool isRoundOver = false;
     public bool IsRoundOver { get => isRoundOver; }
@@ -51,6 +52,12 @@ public class RaundManager : MonoBehaviour
     private void CheckRoundOver()
     {
         if (isRoundOver)
+        {
+            return;
+        }
+
+        //カウントダウン中は落下判定しない
+        if (countDown != null && countDown.IsPlayCount && !countDown.IsGo)
         {
             return;
         }
@@ -100,6 +107,8 @@ public class RaundManager : MonoBehaviour
             raundOverUI[0].SetActive(true);
         }
 
+        seManager.RoundOverSE();
+
         StartCoroutine(RaundOverCoroutine());
     }
 
@@ -148,9 +157,11 @@ public class RaundManager : MonoBehaviour
             raundOverUI[i].SetActive(false);
         }
 
+        //プレイヤーを初期位置へ戻す
+        playerManager.ResetPlayerPositions();
+        //ラウンド終了状態を解除
+        isRoundOver = false;
         //再スタート
         countDown.StartCountDown();
-        playerManager.ResetPlayerPositions();
-        isRoundOver = false;
     }
 }
